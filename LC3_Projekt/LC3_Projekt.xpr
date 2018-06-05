@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="35" Path="C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3.xpr">
+<Project Version="7" Minor="35" Path="C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="55e8f9c3c52e4d50b408c3f65ba74b9d"/>
+    <Option Name="Id" Val="a454e2aa911a4154bda253cb47a88cbc"/>
     <Option Name="Part" Val="xc7z010clg400-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -57,77 +57,77 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_wrapper_tristates.vhd">
+      <File Path="$PPRDIR/../lc3_wrapper_tristates.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3.ngc">
+      <File Path="$PPRDIR/../lc3.ngc">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_wrapper_multiplexers.vhd">
+      <File Path="$PPRDIR/../lc3_wrapper_multiplexers.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/debounce.vhd">
+      <File Path="$PPRDIR/../debounce.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/BtnToggle.vhd">
+      <File Path="$PPRDIR/../BtnToggle.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/ZyboVIO_SE.ngc">
+      <File Path="$PPRDIR/../ZyboVIO_SE.ngc">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_debug.vhd">
+      <File Path="$PPRDIR/../lc3_debug.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_computer.vhd">
+      <File Path="$PPRDIR/../lc3_computer.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/zybovios_wrapper.vhd">
+      <File Path="$PPRDIR/../zybovios_wrapper.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/student_code.vhd">
+      <File Path="$PPRDIR/../student_code.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/top.vhd">
+      <File Path="$PPRDIR/../top.vhd">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -142,7 +142,7 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/../../../../Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/ZyboVIO.ucf"/>
+      <File Path="$PPRDIR/../ZyboVIO.ucf"/>
       <Config>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>

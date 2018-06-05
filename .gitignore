@@ -1,0 +1,9 @@
+*.wpc
+*.wdf
+*.xml
+*.rst
+*.js
+*.tcl
+*.lpr
+*.bat
+LC3.runs/

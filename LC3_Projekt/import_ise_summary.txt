@@ -32,7 +32,7 @@ Section (1) - ISE PROJECT INFORMATION
 The following items describes the information about the ISE project that was imported:-
 
 Project Name    = LC3Zybo
-Project File    = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/LC3Zybo.xise
+Project File    = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3Zybo.xise
 Project Version = 14.1
 Device Family   = Zynq
 Part Name       = xc7z010-1-clg400
@@ -254,57 +254,57 @@ VHDL_GENERICS  =
 
 File(s):-
 NAME      = lc3_wrapper_tristates.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_wrapper_tristates.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3_wrapper_tristates.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = lc3.ngc
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3.ngc
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3.ngc
 FILE_TYPE = NGC
 LIBRARY   = xil_defaultlib
 
 NAME      = lc3_wrapper_multiplexers.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_wrapper_multiplexers.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3_wrapper_multiplexers.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = debounce.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/debounce.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/debounce.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = BtnToggle.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/BtnToggle.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/BtnToggle.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = ZyboVIO_SE.ngc
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/ZyboVIO_SE.ngc
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZyboVIO_SE.ngc
 FILE_TYPE = NGC
 LIBRARY   = xil_defaultlib
 
 NAME      = lc3_debug.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_debug.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3_debug.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = lc3_computer.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/lc3_computer.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3_computer.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = zybovios_wrapper.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/zybovios_wrapper.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/zybovios_wrapper.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = student_code.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/student_code.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/student_code.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
 NAME      = top.vhd
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/top.vhd
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/top.vhd
 FILE_TYPE = VHDL
 LIBRARY   = xil_defaultlib
 
@@ -319,7 +319,7 @@ Note: During the import operation, any constraint file(s) that are found in the 
 
 File(s):-
 NAME      = ZyboVIO.ucf
-FILE PATH = C:/Users/Jonas/Google Drev/3-Ugers 02320 - Digitale systemer/LC3/LC3Zybo/ZyboVIO.ucf
+FILE PATH = C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZyboVIO.ucf
 FILE_TYPE = Unknown
 
 
