@@ -219,14 +219,10 @@ begin
 lc3_ram: entity work.one_port_ram_sync
         port map (
              clk        => clk,
-             clk_enable => cpu_clk_enable,
-             reset      => sys_reset,
-             program    => sys_program,
              addr       => address,
-             data_in    => data_in,
-             data_out   => data_out,
-             WE         => WE,
-             RE         => RE 
+             din    => data_in,
+             dout   => data_out,
+             WE         => WE
              );
 
 end Behavioral;

@@ -34,7 +34,7 @@ library UNISIM;
 entity one_port_ram_sync is
     generic(
         ADDR_WIDTH: integer:=16;
-        DATA_WIDTH: integer:=14
+        DATA_WIDTH: integer:=16
         );
 
     Port (
@@ -42,7 +42,7 @@ entity one_port_ram_sync is
         we: in std_logic;
         addr: in std_logic_vector(ADDR_WIDTH - 1 downto 0);
         din: in std_logic_vector(DATA_WIDTH - 1 downto 0);
-        dout: in std_logic_vector(DATA_WIDTH - 1 downto 0)
+        dout: out std_logic_vector(DATA_WIDTH - 1 downto 0)
     );
 end one_port_ram_sync;
 
