@@ -1,0 +1,271 @@
+/*
+
+Xilinx Vivado v2017.4 (64-bit) [Major: 2017, Minor: 4]
+SW Build: 2086221 on Fri Dec 15 20:55:39 MST 2017
+IP Build: 2085800 on Fri Dec 15 22:25:07 MST 2017
+
+Process ID: 4724
+License: Customer
+
+Current time: 	Wed Jun 06 10:57:39 CEST 2018
+Time zone: 	Central European Time (Europe/Paris)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 4
+
+Screen size: 1600x900
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 45 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	C:/Xilinx/Vivado/2017.4/tps/win64/jre
+JVM executable location: 	C:/Xilinx/Vivado/2017.4/tps/win64/jre/bin/java.exe
+
+User name: 	Jonas
+User home directory: C:/Users/Jonas
+User working directory: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt
+User country: 	DK
+User language: 	da
+User locale: 	da_DK
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2017.4
+RDI_DATADIR: C:/Xilinx/Vivado/2017.4/data
+RDI_BINDIR: C:/Xilinx/Vivado/2017.4/bin
+
+Vivado preferences file location: C:/Users/Jonas/AppData/Roaming/Xilinx/Vivado/2017.4/vivado.xml
+Vivado preferences directory: C:/Users/Jonas/AppData/Roaming/Xilinx/Vivado/2017.4/
+Vivado layouts directory: C:/Users/Jonas/AppData/Roaming/Xilinx/Vivado/2017.4/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/2017.4/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.log
+Vivado journal file location: 	C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.jou
+Engine tmp dir: 	C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-4724-Jonas-1
+
+GUI allocated memory:	178 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 517 MB
+
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 40 MB (+39559kb) [00:00:10]
+// [Engine Memory]: 483 MB (+355113kb) [00:00:10]
+// bs (cj):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr. Version: Vivado v2017.4 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 49 MB (+6727kb) [00:00:14]
+// [Engine Memory]: 521 MB (+14731kb) [00:00:14]
+// [GUI Memory]: 64 MB (+13515kb) [00:00:15]
+// [GUI Memory]: 73 MB (+6561kb) [00:00:17]
+// [Engine Memory]: 591 MB (+45569kb) [00:00:17]
+// [GUI Memory]: 87 MB (+9991kb) [00:00:17]
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.4/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 595 MB. GUI used memory: 40 MB. Current time: 6/6/18 10:57:46 AM CEST
+// Tcl Message: open_project: Time (s): cpu = 00:00:16 ; elapsed = 00:00:09 . Memory (MB): peak = 762.094 ; gain = 67.969 
+// Project name: LC3_Projekt; location: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt; part: xc7z010clg400-1
+dismissDialog("Open Project"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+selectButton(PAResourceQtoS.RunGadget_SHOW_ERROR_AND_CRITICAL_WARNING_MESSAGES, "3 critical warnings"); // h (N, cj)
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3352] multi-driven net data_in[0] with 1st driver pin 'lc3_computer:/lc3_ram/dout[0]' [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3_computer.vhd:180]. ]", 1, true); // ah (O, cj) - Node
+// Elapsed time: 23 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-5559] multi-driven net data_in[0] is connected to constant driver, other driver is ignored [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/lc3_computer.vhd:180]. ]", 2, false); // ah (O, cj)
+// Elapsed time: 27 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// x (cj): Run Synthesis: addNotify
+selectButton("PAResourceQtoS.RunRun_TASK_HAS_ALREADY_COMPLETED_AND_UP_TO_DATE_OK", "OK"); // JButton (A, G)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (x)
+// bs (cj):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Run Synthesis"); // x (cj)
+// TclEventType: RUN_RESET
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// bs (cj):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Jun  6 10:58:56 2018] Launched synth_1... Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log 
+// 'k' command handler elapsed time: 7 seconds
+dismissDialog("Starting Design Runs"); // bs (cj)
+// HMemoryUtils.trashcanNow. Engine heap size: 617 MB. GUI used memory: 40 MB. Current time: 6/6/18 10:59:01 AM CEST
+// TclEventType: RUN_COMPLETED
+// Elapsed time: 602 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, LC3Zybo_top(Behavioral) (top.vhd)]", 1); // B (D, cj)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, LC3Zybo_top(Behavioral) (top.vhd), Inst_student_code : student_code(Behavioral) (student_code.vhd)]", 2); // B (D, cj)
+// PAPropertyPanels.initPanels (lc3_computer.vhd) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, LC3Zybo_top(Behavioral) (top.vhd), Inst_student_code : student_code(Behavioral) (student_code.vhd), Inst_lc3_computer : lc3_computer(Behavioral) (lc3_computer.vhd)]", 3, true); // B (D, cj) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, LC3Zybo_top(Behavioral) (top.vhd), Inst_student_code : student_code(Behavioral) (student_code.vhd), Inst_lc3_computer : lc3_computer(Behavioral) (lc3_computer.vhd)]", 3, true, false, false, false, false, true); // B (D, cj) - Double Click - Node
+// [Engine Memory]: 621 MB (+508kb) [00:11:46]
+// Elapsed time: 19 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "data_in", true); // l (aP, cj)
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "data_in"); // l (aP, cj)
+selectCodeEditor("lc3_computer.vhd", 19, 278); // cd (w, cj)
+selectCodeEditor("lc3_computer.vhd", 25, 278); // cd (w, cj)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // u (O, cj)
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis]", 4); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bs (cj):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// bs (cj):  Starting Design Runs : addNotify
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Wed Jun  6 11:09:30 2018] Launched synth_1... Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bs (cj)
+// HMemoryUtils.trashcanNow. Engine heap size: 642 MB. GUI used memory: 42 MB. Current time: 6/6/18 11:09:31 AM CEST
+// TclEventType: RUN_COMPLETED
+// Elapsed time: 75 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Netlist 29-5] Replacement cell view : ZyboVIO_SE has additional ports (tx_data_out_aa[0]) not seen in its original version.. ]", 2, false); // ah (O, cj)
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis]", 0, true); // ah (O, cj) - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Netlist 29-5] Replacement cell view : ZyboVIO_SE has additional ports (tx_data_out_aa[0]) not seen in its original version.. ]", 2, false); // ah (O, cj)
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aF (Q, cj)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synth_1_synth_report_utilization_0 ; Report on utilization of resources on the targeted device (report_utilization) ; slr = false; packthru = false; hierarchical = false; hierarchical_percentages = false;  ; Wed Jun 06 11:10:35 CEST 2018 ; 7829", 2, "synth_1_synth_report_utilization_0", 0, false); // M (O, cj)
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synth_1_synth_report_utilization_0 ; Report on utilization of resources on the targeted device (report_utilization) ; slr = false; packthru = false; hierarchical = false; hierarchical_percentages = false;  ; Wed Jun 06 11:10:35 CEST 2018 ; 7829", 2); // M (O, cj)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "synth_1_synth_report_utilization_0 ; Report on utilization of resources on the targeted device (report_utilization) ; slr = false; packthru = false; hierarchical = false; hierarchical_percentages = false;  ; Wed Jun 06 11:10:35 CEST 2018 ; 7829", 2, "synth_1_synth_report_utilization_0", 0, false, false, false, false, false, true); // M (O, cj) - Double Click
+floatView(PAResourceOtoP.PAViews_PAR_REPORT, "synth_1_synth_report_utilization_0 - synth_1"); // ax (aF, cj)
+// PAResourceOtoP.PAViews_PAR_REPORT: PAR Report: float view
+maximizeFrame(PAResourceOtoP.PAViews_PAR_REPORT, "synth_1_synth_report_utilization_0 - synth_1"); // ax (aF, FrameFloatingContainer)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 162, 289); // D (w, FrameFloatingContainer)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 257, 312); // D (w, FrameFloatingContainer)
+dockFrame(PAResourceOtoP.PAViews_PAR_REPORT, "synth_1_synth_report_utilization_0 - synth_1"); // ax (aF, FrameFloatingContainer)
+maximizeFrame(PAResourceOtoP.PAViews_PAR_REPORT, "synth_1_synth_report_utilization_0 - synth_1"); // ax (aF, FrameFloatingContainer)
+// PAResourceOtoP.PAViews_PAR_REPORT: PAR Report: dock view
+// [GUI Memory]: 104 MB (+13906kb) [00:13:44]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 17, false); // u (O, cj)
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator]", 1); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// bs (cj):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// Tcl Message: [Wed Jun  6 11:11:13 2018] Launched impl_1... Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bs (cj)
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 77 seconds
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator]", 5); // u (O, cj)
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator]", 5); // u (O, cj)
+// TclEventType: RUN_COMPLETED
+// [GUI Memory]: 110 MB (+354kb) [00:15:38]
+// ah (cj): Implementation Completed: addNotify
+// Elapsed time: 38 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_RUN_BITGEN, "Generate Bitstream"); // a (N, ah)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (ah)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+dismissDialog("Implementation Completed"); // ah (cj)
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 4 
+// Tcl Message: [Wed Jun  6 11:13:11 2018] Launched impl_1... Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log 
+// TclEventType: RUN_COMPLETED
+// ah (cj): Bitstream Generation Completed: addNotify
+// Elapsed time: 70 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (ah)
+dismissDialog("Bitstream Generation Completed"); // ah (cj)
+// Elapsed time: 83 seconds
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 167, 143); // D (w, cj)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 208, 193); // D (w, cj)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 166, 141); // D (w, cj)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 173, 138); // D (w, cj)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 175, 149); // D (w, cj)
+selectCodeEditor("synth_1_synth_report_utilization_0 - synth_1", 165, 147); // D (w, cj)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, LC3Zybo_top(Behavioral) (top.vhd), Inst_student_code : student_code(Behavioral) (student_code.vhd), Inst_lc3_computer : lc3_computer(Behavioral) (lc3_computer.vhd), lc3_ram : xilinx_one_port_ram_sync(beh_arch) (lc3_ram.vhd)]", 5, false); // B (D, cj)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, LC3Zybo_top(Behavioral) (top.vhd), Inst_student_code : student_code(Behavioral) (student_code.vhd), Inst_lc3_computer : lc3_computer(Behavioral) (lc3_computer.vhd), lc3_ram : xilinx_one_port_ram_sync(beh_arch) (lc3_ram.vhd)]", 5, false, false, false, false, false, true); // B (D, cj) - Double Click
+selectCodeEditor("lc3_ram.vhd", 210, 95); // cd (w, cj)
+selectCodeEditor("lc3_ram.vhd", 301, 105); // cd (w, cj)
+// Elapsed time: 11 seconds
+typeControlKey((HResource) null, "lc3_ram.vhd", 'v'); // cd (w, cj)
+selectCodeEditor("lc3_ram.vhd", 321, 94); // cd (w, cj)
+selectCodeEditor("lc3_ram.vhd", 308, 135); // cd (w, cj)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+selectCodeEditor("lc3_ram.vhd", 317, 93); // cd (w, cj)
+typeControlKey((HResource) null, "lc3_ram.vhd", 'v'); // cd (w, cj)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 11, false); // u (O, cj)
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation]", 2); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// x (cj): Run Synthesis: addNotify
+// TclEventType: DG_GRAPH_GENERATED
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (x)
+// bs (cj):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Run Synthesis"); // x (cj)
+// TclEventType: RUN_RESET
+closeView(PAResourceOtoP.PAViews_PAR_REPORT, "PAR Report"); // c
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_MODIFY
+// bs (cj):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Wed Jun  6 11:16:51 2018] Launched synth_1... Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bs (cj)
+// Elapsed time: 10 seconds
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aF (Q, cj)
+// TclEventType: RUN_COMPLETED
+// Elapsed time: 83 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 14, false); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// bs (cj):  Starting Design Runs : addNotify
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 4 
+// Tcl Message: [Wed Jun  6 11:18:25 2018] Launched impl_1... Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bs (cj)
+// [GUI Memory]: 116 MB (+912kb) [00:21:09]
+// Elapsed time: 17 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZYBO.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/LC3Zybo_top_propImpl.xdc].. Resolution: To avoid this warning, move constraints listed in ['Undefined'] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.. ]", 11, false); // ah (O, cj)
+// TclEventType: RUN_STEP_COMPLETED

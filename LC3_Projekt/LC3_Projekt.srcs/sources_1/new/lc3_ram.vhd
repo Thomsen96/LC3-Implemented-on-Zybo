@@ -46,7 +46,7 @@ entity xilinx_one_port_ram_sync is
 end xilinx_one_port_ram_sync;
 
 architecture beh_arch of xilinx_one_port_ram_sync is
-    type ram_type is array (2**ADDR_WIDTH - 1 downto 0)
+    type ram_type is array (0 to 2**ADDR_WIDTH - 1)
         of std_logic_vector (DATA_WIDTH - 1 downto 0);
     signal ram : ram_type :=(
             -- Empty Traps/Interrupt Tables

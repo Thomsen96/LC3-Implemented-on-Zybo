@@ -148,7 +148,7 @@ begin
 	tx_data <= X"00";
 	
 	--Input data for the LC3 CPU
-	data_in <= X"0000";
+	--data_in <= X"0000";
 
    --All the input signals comming to the FPGA should be used at least once otherwise we get 
    --synthesis warnings. The following lines of VHDL code are meant to remove those warnings. 
