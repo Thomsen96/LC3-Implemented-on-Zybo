@@ -152,3 +152,5 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   SRLC16E => SRL16E: 39 instances
 
 open_run: Time (s): cpu = 00:00:12 ; elapsed = 00:00:07 . Memory (MB): peak = 2125.754 ; gain = 0.000
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Jun  6 16:55:39 2018...

@@ -36,22 +36,55 @@ entity ACL is
         addr    :   in  STD_LOGIC_VECTOR (15 downto 0);
         RE      :   in  STD_LOGIC;
         WE      :   in  STD_LOGIC;
-        mem_we  :   out STD_LOGIC;
+        mem_en  :   out STD_LOGIC;
         ACL_TO_MUX  :   out STD_LOGIC_VECTOR(4 downto 0);
-        test        :   out STD_LOGIC
+        test        :   out STD_LOGIC;
+        cs_sw       :   out  STD_LOGIC;
+        cs_SiSR     :   out STD_LOGIC;
+        cs_SoSR     :   out STD_LOGIC;
+        cs_SoDR     :   out STD_LOGIC;
+        cs_segDDR   :   out STD_LOGIC;
+        cs_LDR      :   out STD_LOGIC;
+        cs_PLED     :   out STD_LOGIC;
     );
 end ACL;
 
 architecture Behavioral of ACL is
-begin
+	-- I/O constants for addr from 0xFE00 to 0xFFFF:
+    constant STDIN_S    : std_logic_vector(15 downto 0) := X"FE00";  -- Serial IN (terminal keyboard)
+    constant STDIN_D    : std_logic_vector(15 downto 0) := X"FE02";
+    constant STDOUT_S   : std_logic_vector(15 downto 0) := X"FE04";  -- Serial OUT (terminal  display)
+    constant STDOUT_D   : std_logic_vector(15 downto 0) := X"FE06";
+    constant IO_SW      : std_logic_vector(15 downto 0) := X"FE0A";  -- Switches
+    constant IO_PSW     : std_logic_vector(15 downto 0) := X"FE0B";  -- Physical Switches	
+	constant IO_BTN     : std_logic_vector(15 downto 0) := X"FE0e";  -- Buttons
+ 	constant IO_PBTN    : std_logic_vector(15 downto 0) := X"FE0F";  -- Physical Buttons	
+	constant IO_SSEG    : std_logic_vector(15 downto 0) := X"FE12";  -- 7 segment
+	constant IO_LED     : std_logic_vector(15 downto 0) := X"FE16";  -- Leds
+	constant IO_PLED    : std_logic_vector(15 downto 0) := X"FE17";  -- Physical Leds
+
+begin    
     process ( addr )
     begin
         cs_sw = '0';
+        cs_SiSR = '0';
+        cs_SoSR = '0';
+        cs_SoDR = '0';
+        cs_segDDR = '0';
+        cs_LDR  = '0';
+        cs_PLED = '0';
+        -- TILFØJ UART og SPI!! SENERE!!
+        
+        --Tilføj if statements der tjekker alle de mulige addresser!
         if( addr = IO_SW) then
             cs_sw = '1';
         end if;
-        if(RE = '1') then 
-                
+        --- Spørgsmål: Skal resten af addresse spacet
+        -- Tilføj så når man vil access ram skal mem_en sættes til 1 lige meget om RE eller We er 1
+        -- Hvis Addressen er mellem x0000 og xDFFF skal der kigges i memory, så dette skal være det første if statement
+        -- Hvor mem_en sættes til 1. I alle andre tilfælde skal mem_en sættes til 0, da der skal tilgås et I/O register.
+        if(RE = '1' ) then 
+                mem_en <= '1';
         end if;
         mem_en <= '0';
         test <= '0';

@@ -115,7 +115,8 @@ architecture Behavioral of lc3_computer is
 
     --<<< Vores kode indsættes her!>>>--
       signal MemToMux                :  std_logic_vector(15 downto 0);
-      signal ADDR_CTL_LOGIC_TO_MUX   :  std_logic_vector(4 downto 0);
+      signal ACL_MUX                :  std_logic_vector(4 downto 0);
+      signal mem_en                 :   std_logic;
       signal Zsw                     :  std_logic_vector(15 downto 0);
       signal Zpsw                     :  std_logic_vector(15 downto 0);
       signal Zbtn                     :  std_logic_vector(15 downto 0);
@@ -230,7 +231,9 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
              addr       => address,
              din        => data_out,
              dout       => MemToMux,
-             we         => WE
+             we         => WE,
+             re         => RE,
+             mem_en     => mem_en
          );
 
     Zsw     <= x"00" & sw;          -- Zero extender sw.
@@ -240,7 +243,7 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     
 MemMUX: entity work.MUX
     port map (
-               MUX_in   =>  ADDR_CTL_LOGIC_TO_MUX,
+               MUX_in   =>  ACL_MUX,
                MUX_out  =>  data_in,
                -- Input til MUXen.
                ram      =>  MemToMux,
@@ -252,21 +255,22 @@ MemMUX: entity work.MUX
                PSwDR    =>  IO_PSW,
                BDR      =>  IO_BTN,
                PBDR     =>  IO_PBTN,
-               segDDR   =>  ,
-               LDR      =>  x"FFF9",
-               PLDR     =>  x"FFFA",
+               segDDR   =>  IO_SSEG,
+               LDR      =>  IO_LED,
+               PLDR     =>  IO_PLED,
                SPI_in   =>  x"FFFB",
                SPI_out  =>  x"FFFC",
                UART_in  =>  x"FFFD",
                UART_out =>  x"FFFE"
                );
+
     Address_Control_Logic: entity work.ACL
         port map (
               addr          => address,
-              re            => RE,
-              we            => WE,
-              mem_en        => led(0),
-              ACL_TO_MUX    => ADDR_CTL_LOGIC_TO_MUX,
+              RE            => RE,
+              WE            => WE,
+              mem_en        => mem_en,
+              ACL_TO_MUX    => ACL_MUX,
               test          => led(1)
         );
 
