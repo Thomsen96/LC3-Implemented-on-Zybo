@@ -20,10 +20,10 @@ entity lc3_computer is
       clk              : in  std_logic; 
 
       --Virtual I/O
-      led              : out std_logic_vector(7 downto 0);
-      btn              : in  std_logic_vector(4 downto 0);
-      sw               : in  std_logic_vector(7 downto 0);
-      hex              : out std_logic_vector(15 downto 0); --16 bit hexadecimal value (shown on 7-seg sisplay)
+        led              : out std_logic_vector(7 downto 0);
+        btn              : in  std_logic_vector(4 downto 0);
+        sw               : in  std_logic_vector(7 downto 0);
+        hex              : out std_logic_vector(15 downto 0); --16 bit hexadecimal value (shown on 7-seg sisplay)
 
 		--Physical I/0 (IO on the Zybo FPGA)
 		pbtn				  : in  std_logic_vector(3 downto 0);
@@ -32,15 +32,15 @@ entity lc3_computer is
 
 		--VIO serial
 		rx_data          : in  std_logic_vector(7 downto 0);
-      rx_rd            : out std_logic;
-      rx_empty         : in  std_logic;
-      tx_data          : out std_logic_vector(7 downto 0);
-      tx_wr            : out std_logic;
-      tx_full          : in  std_logic;
+        rx_rd            : out std_logic;
+        rx_empty         : in  std_logic;
+        tx_data          : out std_logic_vector(7 downto 0);
+        tx_wr            : out std_logic;
+        tx_full          : in  std_logic;
 		
 		sink             : out std_logic;
 
-      --Debug
+    --Debug
       address_dbg      : out std_logic_vector(15 downto 0);
       data_dbg         : out std_logic_vector(15 downto 0);
       RE_dbg           : out std_logic;
@@ -50,6 +50,7 @@ entity lc3_computer is
       cpu_clk_enable   : in  std_logic;
       sys_reset        : in  std_logic;
       sys_program      : in  std_logic
+
    );
 end lc3_computer;
 
@@ -76,18 +77,18 @@ architecture Behavioral of lc3_computer is
 --	attribute	keep	of	sink			: signal	is	"true";
 
    --Creating user friently names for the buttons
-   alias btn_u : std_logic is btn(0); --Button UP
-   alias btn_l : std_logic is btn(1); --Button LEFT
-   alias btn_d : std_logic is btn(2); --Button DOWN
-   alias btn_r : std_logic is btn(3); --Button RIGHT
-   alias btn_s : std_logic is btn(4); --Button SELECT (center button)
-   alias btn_c : std_logic is btn(4); --Button CENTER
+    alias btn_u : std_logic is btn(0); --Button UP
+    alias btn_l : std_logic is btn(1); --Button LEFT
+    alias btn_d : std_logic is btn(2); --Button DOWN
+    alias btn_r : std_logic is btn(3); --Button RIGHT
+    alias btn_s : std_logic is btn(4); --Button SELECT (center button)
+    alias btn_c : std_logic is btn(4); --Button CENTER
    
-   signal sink_sw : std_logic;
-   signal sink_psw : std_logic;
-   signal sink_btn : std_logic;
-   signal sink_pbtn : std_logic;
-	signal sink_uart : std_logic;
+    signal sink_sw : std_logic;
+    signal sink_psw : std_logic;
+    signal sink_btn : std_logic;
+    signal sink_pbtn : std_logic;
+    signal sink_uart : std_logic;
    
 	-- Memory interface signals
 	signal address: std_logic_vector(15 downto 0);
@@ -96,12 +97,12 @@ architecture Behavioral of lc3_computer is
 
 
 	-- I/O constants for addr from 0xFE00 to 0xFFFF:
-   constant STDIN_S    : std_logic_vector(15 downto 0) := X"FE00";  -- Serial IN (terminal keyboard)
-   constant STDIN_D    : std_logic_vector(15 downto 0) := X"FE02";
-   constant STDOUT_S   : std_logic_vector(15 downto 0) := X"FE04";  -- Serial OUT (terminal  display)
-   constant STDOUT_D   : std_logic_vector(15 downto 0) := X"FE06";
-	constant IO_SW      : std_logic_vector(15 downto 0) := X"FE0A";  -- Switches
-   constant IO_PSW     : std_logic_vector(15 downto 0) := X"FE0B";  -- Physical Switches	
+    constant STDIN_S    : std_logic_vector(15 downto 0) := X"FE00";  -- Serial IN (terminal keyboard)
+    constant STDIN_D    : std_logic_vector(15 downto 0) := X"FE02";
+    constant STDOUT_S   : std_logic_vector(15 downto 0) := X"FE04";  -- Serial OUT (terminal  display)
+    constant STDOUT_D   : std_logic_vector(15 downto 0) := X"FE06";
+    constant IO_SW      : std_logic_vector(15 downto 0) := X"FE0A";  -- Switches
+    constant IO_PSW     : std_logic_vector(15 downto 0) := X"FE0B";  -- Physical Switches	
 	constant IO_BTN     : std_logic_vector(15 downto 0) := X"FE0e";  -- Buttons
  	constant IO_PBTN    : std_logic_vector(15 downto 0) := X"FE0F";  -- Physical Buttons	
 	constant IO_SSEG    : std_logic_vector(15 downto 0) := X"FE12";  -- 7 segment
@@ -112,6 +113,13 @@ architecture Behavioral of lc3_computer is
    ---<<<<< End of pregenerated code >>>>>---
    ---<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>---
 
+    --<<< Vores kode indsættes her!>>>--
+      signal MemToMux                :  std_logic_vector(15 downto 0);
+      signal ADDR_CTL_LOGIC_TO_MUX   :  std_logic_vector(4 downto 0);
+      signal Zsw                     :  std_logic_vector(15 downto 0);
+      signal Zpsw                     :  std_logic_vector(15 downto 0);
+      signal Zbtn                     :  std_logic_vector(15 downto 0);
+      signal Zpbtn                     :  std_logic_vector(15 downto 0);
 	
 begin
   ---<<<<<<<<<<<<<<>>>>>>>>>>>>>>>---
@@ -125,8 +133,8 @@ begin
 
    
    --Virtual Leds on Zybo VIO (active high)
-   led(0) <= '0';
-   led(1) <= '0';
+   --led(0) <= '0';
+   --led(1) <= '0';
    led(2) <= '0'; 
    led(3) <= '0'; 
    led(4) <= '0'; 
@@ -221,9 +229,46 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
              clk        => clk,
              addr       => address,
              din        => data_out,
-             dout       => data_in,
+             dout       => MemToMux,
              we         => WE
-             );
+         );
+
+    Zsw     <= x"00" & sw;          -- Zero extender sw.
+    Zpsw    <= x"000" & psw;
+    Zbtn    <= "00000000000" & btn;
+    Zpbtn   <= x"000" & pbtn;
+    
+MemMUX: entity work.MUX
+    port map (
+               MUX_in   =>  ADDR_CTL_LOGIC_TO_MUX,
+               MUX_out  =>  data_in,
+               -- Input til MUXen.
+               ram      =>  MemToMux,
+               SiSR     =>  STDIN_S,
+               SiDR     =>  STDIN_D,
+               SoSR     =>  STDOUT_S,
+               SoDR     =>  STDOUT_D,
+               SwDR     =>  IO_SW,
+               PSwDR    =>  IO_PSW,
+               BDR      =>  IO_BTN,
+               PBDR     =>  IO_PBTN,
+               segDDR   =>  ,
+               LDR      =>  x"FFF9",
+               PLDR     =>  x"FFFA",
+               SPI_in   =>  x"FFFB",
+               SPI_out  =>  x"FFFC",
+               UART_in  =>  x"FFFD",
+               UART_out =>  x"FFFE"
+               );
+    Address_Control_Logic: entity work.ACL
+        port map (
+              addr          => address,
+              re            => RE,
+              we            => WE,
+              mem_en        => led(0),
+              ACL_TO_MUX    => ADDR_CTL_LOGIC_TO_MUX,
+              test          => led(1)
+        );
 
 end Behavioral;
 
