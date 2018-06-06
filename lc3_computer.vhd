@@ -216,13 +216,13 @@ begin
 	-------------------------------------------------------------------------------
 	-- <<< Write your VHDL code starting from here >>>
 	-------------------------------------------------------------------------------
-lc3_ram: entity work.one_port_ram_sync
+lc3_ram: entity work.xilinx_one_port_ram_sync
         port map (
              clk        => clk,
              addr       => address,
-             din    => data_in,
-             dout   => data_out,
-             WE         => WE
+             din        => data_out,
+             dout       => data_in,
+             we         => WE
              );
 
 end Behavioral;
