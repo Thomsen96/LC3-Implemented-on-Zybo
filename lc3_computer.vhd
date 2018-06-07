@@ -96,36 +96,62 @@ architecture Behavioral of lc3_computer is
 	signal RE, WE:  std_logic;
 
 
-	-- I/O constants for addr from 0xFE00 to 0xFFFF:
-    constant STDIN_S    : std_logic_vector(15 downto 0) := X"FE00";  -- Serial IN (terminal keyboard)
-    constant STDIN_D    : std_logic_vector(15 downto 0) := X"FE02";
-    constant STDOUT_S   : std_logic_vector(15 downto 0) := X"FE04";  -- Serial OUT (terminal  display)
-    constant STDOUT_D   : std_logic_vector(15 downto 0) := X"FE06";
-    constant IO_SW      : std_logic_vector(15 downto 0) := X"FE0A";  -- Switches
-    constant IO_PSW     : std_logic_vector(15 downto 0) := X"FE0B";  -- Physical Switches	
-	constant IO_BTN     : std_logic_vector(15 downto 0) := X"FE0e";  -- Buttons
- 	constant IO_PBTN    : std_logic_vector(15 downto 0) := X"FE0F";  -- Physical Buttons	
-	constant IO_SSEG    : std_logic_vector(15 downto 0) := X"FE12";  -- 7 segment
-	constant IO_LED     : std_logic_vector(15 downto 0) := X"FE16";  -- Leds
-	constant IO_PLED    : std_logic_vector(15 downto 0) := X"FE17";  -- Physical Leds
+--	-- I/O constants for addr from 0xFE00 to 0xFFFF:
+--    constant STDIN_S    : std_logic_vector(15 downto 0) := X"FE00";  -- Serial IN (terminal keyboard)
+--    constant STDIN_D    : std_logic_vector(15 downto 0) := X"FE02";
+--    constant STDOUT_S   : std_logic_vector(15 downto 0) := X"FE04";  -- Serial OUT (terminal  display)
+--    constant STDOUT_D   : std_logic_vector(15 downto 0) := X"FE06";
+--    constant IO_SW      : std_logic_vector(15 downto 0) := X"FE0A";  -- Switches
+--    constant IO_PSW     : std_logic_vector(15 downto 0) := X"FE0B";  -- Physical Switches	
+--	  constant IO_BTN     : std_logic_vector(15 downto 0) := X"FE0e";  -- Buttons
+-- 	  constant IO_PBTN    : std_logic_vector(15 downto 0) := X"FE0F";  -- Physical Buttons	
+--	  constant IO_SSEG    : std_logic_vector(15 downto 0) := X"FE12";  -- 7 segment
+--	  constant IO_LED     : std_logic_vector(15 downto 0) := X"FE16";  -- Leds
+--	  constant IO_PLED    : std_logic_vector(15 downto 0) := X"FE17";  -- Physical Leds
    
 	---<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>---
    ---<<<<< End of pregenerated code >>>>>---
    ---<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>---
 
     --<<< Vores kode indsættes her!>>>--
-      signal MemToMux                :  std_logic_vector(15 downto 0);
-      signal ACL_MUX                :  std_logic_vector(4 downto 0);
-      signal mem_en                 :   std_logic;
-      signal Zsw                     :  std_logic_vector(15 downto 0);
-      signal Zpsw                     :  std_logic_vector(15 downto 0);
-      signal Zbtn                     :  std_logic_vector(15 downto 0);
-      signal Zpbtn                     :  std_logic_vector(15 downto 0);
+        signal MEM_MUX                :  std_logic_vector(15 downto 0);
+        signal ACL_MUX                :  std_logic_vector(4 downto 0);
+        signal mem_en                 :   std_logic;
+        signal Zsw                     :  std_logic_vector(15 downto 0);
+        signal Zpsw                     :  std_logic_vector(15 downto 0);
+        signal Zbtn                     :  std_logic_vector(15 downto 0);
+        signal Zpbtn                     :  std_logic_vector(15 downto 0);
+      
+        
+        signal STDIN_S_SIGNAL         : std_logic_vector(15 downto 0);   
+        signal STDIN_D_SIGNAL          : std_logic_vector(15 downto 0);
+        signal STDOUT_S_SIGNAL         : std_logic_vector(15 downto 0);  -- Serial OUT (terminal  display)
+        signal STDOUT_D_SIGNAL  : std_logic_vector(15 downto 0);
+        signal IO_SSEG_SIGNAL   : std_logic_vector(15 downto 0);  -- 7 segment
+        signal IO_LED_SIGNAL    : std_logic_vector(15 downto 0);  -- Leds
+        signal IO_PLED_SIGNAL   : std_logic_vector(15 downto 0);  -- Physical Leds
+
+        signal cs_STDIN_S    : std_logic;  -- Serial IN (terminal keyboard)
+        signal cs_STDIN_D    : std_logic;
+        signal cs_STDOUT_S   : std_logic;  -- Serial OUT (terminal  display)
+        signal cs_STDOUT_D   : std_logic;
+        signal cs_IO_SSEG    : std_logic;  -- 7 segment
+        signal cs_IO_LED     : std_logic;  -- Leds
+        signal cs_IO_PLED    : std_logic;  -- Physical Leds
+
 	
 begin
   ---<<<<<<<<<<<<<<>>>>>>>>>>>>>>>---
    ---<<<<< Pregenerated code >>>>>---
    ---<<<<<<<<<<<<<<>>>>>>>>>>>>>>>--- 
+   
+  -- udefineret signal vores:
+    STDIN_S_SIGNAL <= x"FFFF";
+    STDIN_D_SIGNAL <= x"FFFF";
+    STDOUT_S_SIGNAL <= x"FFFF";
+    STDOUT_D_SIGNAL <= x"FFFF";
+   -- IO_SSEG_SIGNAL <= x"FFFF";
+   -- IO_PLED_SIGNAL <= x"FFFF";
    
    --In order to avoid warnings or errors all outputs should be assigned a value. 
    --The VHDL lines below assign a value to each otput signal. An otput signal can have
@@ -134,23 +160,27 @@ begin
 
    
    --Virtual Leds on Zybo VIO (active high)
-   --led(0) <= '0';
-   --led(1) <= '0';
-   led(2) <= '0'; 
-   led(3) <= '0'; 
-   led(4) <= '0'; 
-   led(5) <= '0'; 
-   led(6) <= '0'; 
-   led(7) <= '0'; 
+--   --led(0) <= '0';
+--   --led(1) <= '0';
+--   led(2) <= '0'; 
+--   led(3) <= '0'; 
+--   led(4) <= '0'; 
+--   led(5) <= '0'; 
+--   led(6) <= '0'; 
+--   led(7) <= '0'; 
+    led <= IO_LED_SIGNAL(7 downto 0);
 
    --Physical leds on the Zybo board (active high)
-   pled(0) <= '0';
-   pled(1) <= '0';
-   pled(2) <= '0';
+--   pled(0) <= '0';
+--   pled(1) <= '0';
+--   pled(2) <= '0';
+    pled <= IO_PLED_SIGNAL(2 downto 0);
 
    --Virtual hexadecimal display on Zybo VIO
-   hex <= X"1234"; 
-
+--   hex <= X"1234"; 
+   -- hex <= IO_SSEG_SIGNAL;
+   -- Denn linje tester de fysiske switches og knapper samt VIO switches.
+    hex <= psw(3 downto 0) & pbtn(3 downto 0) & IO_SSEG_SIGNAL(7 downto 0);
 	--Virtual I/O UART
 	rx_rd <= '0';
 	tx_wr <= '0';
@@ -230,7 +260,7 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
              clk        => clk,
              addr       => address,
              din        => data_out,
-             dout       => MemToMux,
+             dout       => MEM_MUX,
              we         => WE,
              re         => RE,
              mem_en     => mem_en
@@ -246,18 +276,18 @@ MemMUX: entity work.MUX
                MUX_in   =>  ACL_MUX,
                MUX_out  =>  data_in,
                -- Input til MUXen.
-               ram      =>  MemToMux,
-               SiSR     =>  STDIN_S,
-               SiDR     =>  STDIN_D,
-               SoSR     =>  STDOUT_S,
-               SoDR     =>  STDOUT_D,
-               SwDR     =>  IO_SW,
-               PSwDR    =>  IO_PSW,
-               BDR      =>  IO_BTN,
-               PBDR     =>  IO_PBTN,
-               segDDR   =>  IO_SSEG,
-               LDR      =>  IO_LED,
-               PLDR     =>  IO_PLED,
+               MEM      =>  MEM_MUX,
+               STDIN_S  =>  STDIN_S_SIGNAL,
+               STDIN_D  =>  STDIN_D_SIGNAL,
+               STDOUT_S =>  STDOUT_S_SIGNAL,
+               STDOUT_D =>  STDOUT_D_SIGNAL,
+               IO_SW    =>  Zsw,
+               IO_PSW   =>  Zpsw,
+               IO_BTN   =>  Zbtn,
+               IO_PBTN  =>  Zpbtn,
+               IO_SSEG  =>  IO_SSEG_SIGNAL,
+               IO_LED   =>  IO_LED_SIGNAL,
+               IO_PLED  =>  IO_PLED_SIGNAL,
                SPI_in   =>  x"FFFB",
                SPI_out  =>  x"FFFC",
                UART_in  =>  x"FFFD",
@@ -267,12 +297,47 @@ MemMUX: entity work.MUX
     Address_Control_Logic: entity work.ACL
         port map (
               addr          => address,
-              RE            => RE,
+            --  RE            => RE,
               WE            => WE,
               mem_en        => mem_en,
-              ACL_TO_MUX    => ACL_MUX,
-              test          => led(1)
+              ACL_MUX       => ACL_MUX,
+              cs_STDIN_S    => cs_STDIN_S,
+              cs_STDOUT_S   => cs_STDOUT_S,
+              cs_STDOUT_D   => cs_STDOUT_D,
+--              cs_IO_SW      => cs_IO_SW,
+              cs_IO_SSEG    => cs_IO_SSEG,
+              cs_IO_LED     => cs_IO_LED,
+              cs_IO_PLED    => cs_IO_PLED
         );
-
+    
+    
+    -- LED REGISTER:
+    IO_LED_Register : entity work.IO_Register
+        port map (
+            clk     => clk,
+            reset   => sys_reset,
+            cs_en   => cs_IO_LED,
+            data_in => data_out,
+            data_out=> IO_LED_SIGNAL
+        );
+    -- PLED REGISTER:
+    IO_PLED_Register : entity work.IO_Register
+        port map (
+            clk     => clk,
+            reset   => sys_reset,
+            cs_en   => cs_IO_PLED,
+            data_in => data_out,
+            data_out=> IO_PLED_SIGNAL
+        );
+    -- SSEG REGISTER:
+    IO_SSEG_Register : entity work.IO_Register
+            port map (
+                clk     => clk,
+                reset   => sys_reset,
+                cs_en   => cs_IO_SSEG,
+                data_in => data_out,
+                data_out=> IO_SSEG_SIGNAL
+            );
+        
 end Behavioral;
 

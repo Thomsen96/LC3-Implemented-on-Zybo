@@ -7,5 +7,7 @@
 *.lpr
 *.bat
 *.str
+*.jou
+*.log
 LC3_Projekt/LC3_Projekt.runs/
-
+LC3_Projekt/vivado*
