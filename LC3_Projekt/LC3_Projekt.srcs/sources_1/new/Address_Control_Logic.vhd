@@ -12,12 +12,13 @@ entity ACL is
         ACL_MUX         :   out STD_LOGIC_VECTOR(4 downto 0);
         mem_en          :   out STD_LOGIC;
         cs_STDIN_S      :   out STD_LOGIC;
+        cs_STDIN_D      :   out STD_LOGIC;
         cs_STDOUT_S     :   out STD_LOGIC;
         cs_STDOUT_D     :   out STD_LOGIC;
-        cs_IO_SW        :   out STD_LOGIC;
         cs_IO_SSEG      :   out STD_LOGIC;
         cs_IO_LED       :   out STD_LOGIC;
-        cs_IO_PLED      :   out STD_LOGIC
+        cs_IO_PLED      :   out STD_LOGIC;
+        rx_rd           :   out STD_LOGIC
     );
 end ACL;
 
@@ -39,15 +40,18 @@ architecture Behavioral of ACL is
     process ( addr, WE )
     begin
         cs_STDIN_S  <= '0';
+        cs_STDIN_D  <= '0';
         cs_STDOUT_S <= '0';
         cs_STDOUT_D <= '0';
-        cs_IO_SW    <= '0';
         cs_IO_SSEG  <= '0';
         cs_IO_LED   <= '0';
         cs_IO_PLED  <= '0';
+        
         mem_en      <= '0';
         -- TILFØJ UART og SPI!! SENERE!!
-    
+        -- UART
+        rx_rd       <= '0';
+        
         --Tilføj if statements der tjekker alle de mulige addresser!
         if( addr = STDIN_S ) then
             if( WE = '1') then
@@ -55,6 +59,7 @@ architecture Behavioral of ACL is
             end if;
             ACL_MUX     <= "00001";
         elsif( addr = STDIN_D) then
+            rx_rd       <= '1';
             ACL_MUX     <= "00010";
         elsif( addr = STDOUT_S) then
             if( WE = '1') then
@@ -67,9 +72,6 @@ architecture Behavioral of ACL is
             end if;
             ACL_MUX     <= "00100";
         elsif( addr = IO_SW) then
-            if( WE = '1') then
-                cs_IO_SW <= '1'; 
-            end if;
             ACL_MUX     <= "00101";
         elsif (addr = IO_PSW) then
             ACL_MUX     <= "00110";

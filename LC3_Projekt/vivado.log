@@ -2,10 +2,10 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Thu Jun  7 09:18:23 2018
-# Process ID: 1524
+# Start of session at: Thu Jun  7 16:15:38 2018
+# Process ID: 11432
 # Current directory: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9408 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10472 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
 # Log file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.log
 # Journal file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt\vivado.jou
 #-----------------------------------------------------------
@@ -16,151 +16,24 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.4/data/ip'.
-open_project: Time (s): cpu = 00:00:18 ; elapsed = 00:00:10 . Memory (MB): peak = 768.805 ; gain = 71.035
-close [ open C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/IO_Register.vhd w ]
-add_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/IO_Register.vhd
+open_project: Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 757.121 ; gain = 46.973
 reset_run synth_1
 launch_runs synth_1 -jobs 4
-[Thu Jun  7 11:40:08 2018] Launched synth_1...
+[Thu Jun  7 16:56:56 2018] Launched synth_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
 reset_run synth_1
 launch_runs synth_1 -jobs 4
-[Thu Jun  7 11:41:49 2018] Launched synth_1...
+[Thu Jun  7 16:59:27 2018] Launched synth_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
 reset_run synth_1
 launch_runs synth_1 -jobs 4
-[Thu Jun  7 11:46:04 2018] Launched synth_1...
+[Thu Jun  7 17:22:52 2018] Launched synth_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
 reset_run synth_1
 launch_runs synth_1 -jobs 4
-[Thu Jun  7 11:51:33 2018] Launched synth_1...
+[Thu Jun  7 17:24:43 2018] Launched synth_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
 reset_run synth_1
 launch_runs synth_1 -jobs 4
-[Thu Jun  7 11:54:32 2018] Launched synth_1...
+[Thu Jun  7 17:25:44 2018] Launched synth_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 11:59:38 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-open_run impl_1
-INFO: [Netlist 29-17] Analyzing 350 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2017.4
-INFO: [Device 21-403] Loading part xc7z010clg400-1
-INFO: [Project 1-570] Preparing netlist for logic optimization
-Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp2/LC3Zybo_top_early.xdc]
-Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp2/LC3Zybo_top_early.xdc]
-Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp2/LC3Zybo_top.xdc]
-Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp2/LC3Zybo_top.xdc]
-Reading XDEF placement.
-Reading placer database...
-Reading XDEF routing.
-Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.965 . Memory (MB): peak = 1310.117 ; gain = 6.055
-Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
-Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.966 . Memory (MB): peak = 1310.117 ; gain = 6.055
-INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 47 instances were transformed.
-  SRLC16E => SRL16E: 47 instances
-
-open_run: Time (s): cpu = 00:00:27 ; elapsed = 00:00:18 . Memory (MB): peak = 1396.254 ; gain = 418.414
-show_objects -name LED [get_cells -hierarchical -filter { PRIMITIVE_TYPE =~ FLOP_LATCH.*.* } ]
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 12:08:32 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 12:25:52 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 12:27:23 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-refresh_design
-INFO: [Netlist 29-17] Analyzing 350 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2017.4
-INFO: [Project 1-570] Preparing netlist for logic optimization
-Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp5/LC3Zybo_top_early.xdc]
-Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp5/LC3Zybo_top_early.xdc]
-Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp5/LC3Zybo_top.xdc]
-Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp5/LC3Zybo_top.xdc]
-Reading XDEF placement.
-Reading placer database...
-Reading XDEF routing.
-Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.945 . Memory (MB): peak = 1898.453 ; gain = 0.000
-Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
-Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.945 . Memory (MB): peak = 1898.453 ; gain = 0.000
-refresh_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:11 . Memory (MB): peak = 1898.582 ; gain = 6.000
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 12:34:16 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-close_design
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 12:36:08 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-open_run impl_1
-INFO: [Netlist 29-17] Analyzing 350 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2017.4
-INFO: [Project 1-570] Preparing netlist for logic optimization
-Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp8/LC3Zybo_top_early.xdc]
-Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp8/LC3Zybo_top_early.xdc]
-Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp8/LC3Zybo_top.xdc]
-Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-1524-Jonas-1/dcp8/LC3Zybo_top.xdc]
-Reading XDEF placement.
-Reading placer database...
-Reading XDEF routing.
-Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1936.965 ; gain = 0.000
-Restored from archive | CPU: 2.000000 secs | Memory: 0.000000 MB |
-Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1936.965 ; gain = 0.000
-INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 43 instances were transformed.
-  SRLC16E => SRL16E: 43 instances
-
-open_run: Time (s): cpu = 00:00:10 ; elapsed = 00:00:08 . Memory (MB): peak = 1936.965 ; gain = 0.000
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-[Thu Jun  7 12:39:07 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 12:43:12 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 13:06:07 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 13:07:40 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 13:10:11 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 13:12:24 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 13:13:38 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-[Thu Jun  7 13:16:18 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 13:21:10 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 13:22:48 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-[Thu Jun  7 13:24:38 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun  7 13:34:05 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun  7 13:36:14 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log

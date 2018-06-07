@@ -121,7 +121,9 @@ architecture Behavioral of lc3_computer is
         signal Zpsw                     :  std_logic_vector(15 downto 0);
         signal Zbtn                     :  std_logic_vector(15 downto 0);
         signal Zpbtn                     :  std_logic_vector(15 downto 0);
+        signal E_KBSR                   : std_logic_vector(15 downto 0); 
       
+        
         
         signal STDIN_S_SIGNAL         : std_logic_vector(15 downto 0);   
         signal STDIN_D_SIGNAL          : std_logic_vector(15 downto 0);
@@ -138,7 +140,12 @@ architecture Behavioral of lc3_computer is
         signal cs_IO_SSEG    : std_logic;  -- 7 segment
         signal cs_IO_LED     : std_logic;  -- Leds
         signal cs_IO_PLED    : std_logic;  -- Physical Leds
-
+        
+        -- Signaler til UART
+        signal KBSR         : std_logic;
+        signal KBDR         : std_logic_vector(15 downto 0);
+        signal DSR         : std_logic_vector(15 downto 0);
+        signal w_data       : std_logic_vector(15 downto 0);
 	
 begin
   ---<<<<<<<<<<<<<<>>>>>>>>>>>>>>>---
@@ -146,12 +153,12 @@ begin
    ---<<<<<<<<<<<<<<>>>>>>>>>>>>>>>--- 
    
   -- udefineret signal vores:
-    STDIN_S_SIGNAL <= x"FFFF";
-    STDIN_D_SIGNAL <= x"FFFF";
-    STDOUT_S_SIGNAL <= x"FFFF";
-    STDOUT_D_SIGNAL <= x"FFFF";
-   -- IO_SSEG_SIGNAL <= x"FFFF";
-   -- IO_PLED_SIGNAL <= x"FFFF";
+    --STDIN_S_SIGNAL <= x"FFFF";
+    --STDIN_D_SIGNAL <= x"FFFF";
+    --STDOUT_S_SIGNAL <= x"FFFF";
+    --STDOUT_D_SIGNAL <= x"FFFF";
+    --IO_SSEG_SIGNAL <= x"FFFF";
+    --IO_PLED_SIGNAL <= x"FFFF";
    
    --In order to avoid warnings or errors all outputs should be assigned a value. 
    --The VHDL lines below assign a value to each otput signal. An otput signal can have
@@ -178,13 +185,17 @@ begin
 
    --Virtual hexadecimal display on Zybo VIO
 --   hex <= X"1234"; 
-   -- hex <= IO_SSEG_SIGNAL;
+    hex <= IO_SSEG_SIGNAL;
    -- Denn linje tester de fysiske switches og knapper samt VIO switches.
-    hex <= psw(3 downto 0) & pbtn(3 downto 0) & IO_SSEG_SIGNAL(7 downto 0);
+   -- hex <= psw(3 downto 0) & pbtn(3 downto 0) & IO_SSEG_SIGNAL(7 downto 0);
+   
 	--Virtual I/O UART
-	rx_rd <= '0';
+	KBSR <= not(rx_empty);
+	KBDR <= x"00" & rx_data;
+	tx_data <=  w_data(7 downto 0);
+	--rx_rd <= '0';
 	tx_wr <= '0';
-	tx_data <= X"00";
+	--tx_data <= X"00";
 	
 	--Input data for the LC3 CPU
 	--data_in <= X"0000";
@@ -270,6 +281,8 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     Zpsw    <= x"000" & psw;
     Zbtn    <= "00000000000" & btn;
     Zpbtn   <= x"000" & pbtn;
+    E_KBSR  <= KBSR & "000000000000000";
+    DSR     <= not tx_full & "000000000000000";
     
 MemMUX: entity work.MUX
     port map (
@@ -277,10 +290,10 @@ MemMUX: entity work.MUX
                MUX_out  =>  data_in,
                -- Input til MUXen.
                MEM      =>  MEM_MUX,
-               STDIN_S  =>  STDIN_S_SIGNAL,
+               STDIN_S  =>  E_KBSR,
                STDIN_D  =>  STDIN_D_SIGNAL,
                STDOUT_S =>  STDOUT_S_SIGNAL,
-               STDOUT_D =>  STDOUT_D_SIGNAL,
+               STDOUT_D =>  w_data,
                IO_SW    =>  Zsw,
                IO_PSW   =>  Zpsw,
                IO_BTN   =>  Zbtn,
@@ -302,12 +315,13 @@ MemMUX: entity work.MUX
               mem_en        => mem_en,
               ACL_MUX       => ACL_MUX,
               cs_STDIN_S    => cs_STDIN_S,
+              cs_STDIN_D    => cs_STDIN_D,
               cs_STDOUT_S   => cs_STDOUT_S,
               cs_STDOUT_D   => cs_STDOUT_D,
---              cs_IO_SW      => cs_IO_SW,
               cs_IO_SSEG    => cs_IO_SSEG,
               cs_IO_LED     => cs_IO_LED,
-              cs_IO_PLED    => cs_IO_PLED
+              cs_IO_PLED    => cs_IO_PLED,
+              rx_rd         => rx_rd
         );
     
     
@@ -338,6 +352,41 @@ MemMUX: entity work.MUX
                 data_in => data_out,
                 data_out=> IO_SSEG_SIGNAL
             );
-        
+    -- STDIN Status register.
+    IO_STDIN_S_Register : entity work.IO_Register
+        port map (
+            clk     => clk,
+            reset   => sys_reset,
+            cs_en   => cs_STDIN_S,
+            data_in => data_out,
+            data_out=> STDIN_S_SIGNAL
+        );
+    -- STDIN Data register.
+    IO_STDIN_D_Register : entity work.IO_Register
+        port map (
+            clk     => clk,
+            reset   => sys_reset,
+            cs_en   => cs_STDIN_D,
+            data_in => KBDR,
+            data_out=> STDIN_D_SIGNAL
+        );
+    -- STDOUT Status register.
+    IO_STDOUT_S_Register : entity work.IO_Register
+        port map (
+            clk     => clk,
+            reset   => sys_reset,
+            cs_en   => cs_STDOUT_S,
+            data_in => DSR,
+            data_out=> STDOUT_S_SIGNAL
+        );
+    -- STDOUT Data register.
+    IO_STDOUT_D_Register : entity work.IO_Register
+        port map (
+            clk     => clk,
+            reset   => sys_reset,
+            cs_en   => cs_STDOUT_D,
+            data_in => data_out,
+            data_out=> w_data
+        );
 end Behavioral;
 
