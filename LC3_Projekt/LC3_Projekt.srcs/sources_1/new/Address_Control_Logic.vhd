@@ -7,18 +7,19 @@ library UNISIM;
 entity ACL is
     Port ( 
         addr            :   in  STD_LOGIC_VECTOR(15 downto 0);
-        --RE              :   in  STD_LOGIC;
+        RE              :   in  STD_LOGIC;
         WE              :   in  STD_LOGIC;
         ACL_MUX         :   out STD_LOGIC_VECTOR(4 downto 0);
         mem_en          :   out STD_LOGIC;
-        cs_STDIN_S      :   out STD_LOGIC;
-        cs_STDIN_D      :   out STD_LOGIC;
-        cs_STDOUT_S     :   out STD_LOGIC;
-        cs_STDOUT_D     :   out STD_LOGIC;
+--        cs_STDIN_S      :   out STD_LOGIC;
+--        cs_STDIN_D      :   out STD_LOGIC;
+--        cs_STDOUT_S     :   out STD_LOGIC;
+--        cs_STDOUT_D     :   out STD_LOGIC;
         cs_IO_SSEG      :   out STD_LOGIC;
         cs_IO_LED       :   out STD_LOGIC;
         cs_IO_PLED      :   out STD_LOGIC;
-        rx_rd           :   out STD_LOGIC
+        rx_rd           :   out STD_LOGIC;
+        tx_wr           :   out STD_LOGIC
     );
 end ACL;
 
@@ -37,12 +38,12 @@ architecture Behavioral of ACL is
 	constant IO_PLED    : std_logic_vector(15 downto 0) := X"FE17";  -- Physical Leds
 
     begin
-    process ( addr, WE )
+    process ( addr, WE, RE )
     begin
-        cs_STDIN_S  <= '0';
-        cs_STDIN_D  <= '0';
-        cs_STDOUT_S <= '0';
-        cs_STDOUT_D <= '0';
+--        cs_STDIN_S  <= '0';
+--        cs_STDIN_D  <= '0';
+--        cs_STDOUT_S <= '0';
+--        cs_STDOUT_D <= '0';
         cs_IO_SSEG  <= '0';
         cs_IO_LED   <= '0';
         cs_IO_PLED  <= '0';
@@ -51,25 +52,31 @@ architecture Behavioral of ACL is
         -- TILFØJ UART og SPI!! SENERE!!
         -- UART
         rx_rd       <= '0';
+        tx_wr       <= '0';
         
         --Tilføj if statements der tjekker alle de mulige addresser!
-        if( addr = STDIN_S ) then
+        if( addr = STDIN_S ) then       -- STD IN Status
             if( WE = '1') then
-                cs_STDIN_S  <= '1';
+--                cs_STDIN_S  <= '1';
             end if;
             ACL_MUX     <= "00001";
-        elsif( addr = STDIN_D) then
-            rx_rd       <= '1';
+            
+        elsif( addr = STDIN_D) then     -- STD IN Data
+            --if (RE = '1') then
+                rx_rd       <= '1';
+            --end if;
             ACL_MUX     <= "00010";
-        elsif( addr = STDOUT_S) then
+            
+        elsif( addr = STDOUT_S) then    -- STD OUT Status
             if( WE = '1') then
-                cs_STDOUT_S <= '1';
+--                cs_STDOUT_S <= '1';
             end if;
             ACL_MUX     <= "00011";
         elsif( addr = STDOUT_D) then
-            if( WE = '1') then
-                cs_STDOUT_D <= '1';
-            end if;
+--            if( WE = '1') then
+--                cs_STDOUT_D <= '1';
+                  tx_wr <= '1';
+--            end if;
             ACL_MUX     <= "00100";
         elsif( addr = IO_SW) then
             ACL_MUX     <= "00101";

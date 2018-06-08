@@ -103,3 +103,129 @@ show_objects -name STDOUT_S_SIGNAL [get_cells -hierarchical "*" ]
 show_objects -name STDIN_S_SIGNAL [get_cells -hierarchical "*" ]
 show_objects -name STDIN_S_SIGNAL [get_cells -hierarchical "*" ]
 show_objects -name KBSR [get_cells -hierarchical "*" ]
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Fri Jun  8 10:38:11 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7z010clg400-1
+INFO: [Netlist 29-17] Analyzing 382 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZYBO.xdc]
+Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZYBO.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 1763.000 ; gain = 0.000
+launch_runs impl_1 -jobs 4
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.133 . Memory (MB): peak = 1766.121 ; gain = 0.000
+[Fri Jun  8 10:42:08 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Fri Jun  8 10:44:10 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Fri Jun  8 11:35:44 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 11:37:12 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Fri Jun  8 11:39:18 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Fri Jun  8 12:07:23 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 12:12:14 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+close_design
+open_run impl_1
+INFO: [Netlist 29-17] Analyzing 355 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-11880-Jonas-1/dcp16/LC3Zybo_top_early.xdc]
+Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-11880-Jonas-1/dcp16/LC3Zybo_top_early.xdc]
+Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-11880-Jonas-1/dcp16/LC3Zybo_top.xdc]
+Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/.Xil/Vivado-11880-Jonas-1/dcp16/LC3Zybo_top.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1771.703 ; gain = 0.000
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1771.703 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 47 instances were transformed.
+  SRLC16E => SRL16E: 47 instances
+
+open_run: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 1787.457 ; gain = 15.754
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7z010clg400-1
+INFO: [Netlist 29-17] Analyzing 380 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.4
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZYBO.xdc]
+Finished Parsing XDC File [C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/ZYBO.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 1966.473 ; gain = 166.145
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 12:23:33 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 12:23:33 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 12:34:33 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 12:34:33 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 12:38:47 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 12:38:47 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 13:01:21 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 13:01:21 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 13:07:21 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 13:07:21 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
+[Fri Jun  8 13:22:49 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 13:22:49 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log

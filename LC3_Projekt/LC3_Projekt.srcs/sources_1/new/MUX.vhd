@@ -14,7 +14,7 @@ entity MUX is
            STDIN_S    : in STD_LOGIC_VECTOR (15 downto 0);
            STDIN_D     : in STD_LOGIC_VECTOR (15 downto 0);
            STDOUT_S     : in STD_LOGIC_VECTOR (15 downto 0);
-           STDOUT_D     : in STD_LOGIC_VECTOR (15 downto 0);
+--           STDOUT_D     : in STD_LOGIC_VECTOR (15 downto 0);
            IO_SW     : in STD_LOGIC_VECTOR (15 downto 0);
            IO_PSW    : in STD_LOGIC_VECTOR (15 downto 0);
            IO_BTN      : in STD_LOGIC_VECTOR (15 downto 0);
@@ -37,7 +37,7 @@ begin
                     STDIN_S     when "00001",
                     STDIN_D     when "00010",
                     STDOUT_S     when "00011",
-                    STDOUT_D    when "00100",
+--                    STDOUT_D    when "00100",
                     IO_SW     when "00101",
                     IO_PSW    when "00110",
                     IO_BTN      when "00111",

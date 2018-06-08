@@ -146,7 +146,9 @@ architecture Behavioral of lc3_computer is
         signal KBSR         : std_logic;
         signal KBDR         : std_logic_vector(15 downto 0);
         signal DSR         : std_logic_vector(15 downto 0);
-        signal w_data       : std_logic_vector(15 downto 0);
+        --signal w_data       : std_logic_vector(15 downto 0);
+        signal test_signal : std_logic;
+        signal test_signal2 : std_logic;
         
 --            attribute	keep	of	STDIN_D_SIGNAL			: signal	is	"true";
 	
@@ -188,7 +190,8 @@ begin
 
    --Virtual hexadecimal display on Zybo VIO
 --   hex <= X"1234"; 
-    hex <= IO_SSEG_SIGNAL;
+    --hex <= IO_SSEG_SIGNAL;
+    hex <= "000" & test_signal2 & "000" & test_signal & KBDR(7 downto 0) ;
    -- Denn linje tester de fysiske switches og knapper samt VIO switches.
    -- hex <= psw(3 downto 0) & pbtn(3 downto 0) & IO_SSEG_SIGNAL(7 downto 0);
    
@@ -196,11 +199,12 @@ begin
 	KBSR <= not(rx_empty);
 	KBDR <= x"00" & rx_data;
 	tx_wr <= STDOUT_S_SIGNAL(15);
-	tx_data <=  w_data(7 downto 0);
+	--tx_data <=  w_data(7 downto 0);
 	--rx_rd <= '0';
 	--tx_wr <= '0';
 	--tx_data <= X"00";
-	
+	 rx_rd <= test_signal;
+	 tx_wr <= test_signal2;
 	--Input data for the LC3 CPU
 	--data_in <= X"0000";
 
@@ -214,8 +218,8 @@ begin
    sink_pbtn <= pbtn(0) or pbtn(1) or pbtn(2) or pbtn(3);
    sink_sw <= sw(0) or sw(1) or sw(2) or sw(3) or sw(4) or sw(5) or sw(6) or sw(7); 
    sink_btn <= btn(0) or btn(1) or btn(2) or btn(3) or btn(4);
-    --sink_uart <= rx_data(0) or rx_data(1) or rx_data(2) or rx_data(3) or rx_data(4) or 
-	--				 rx_data(5) or rx_data(6) or rx_data(7)or rx_empty or tx_full; 
+   sink_uart <= rx_data(0) or rx_data(1) or rx_data(2) or rx_data(3) or rx_data(4) or 
+					 rx_data(5) or rx_data(6) or rx_data(7)or rx_empty or tx_full; 
    sink <= sink_sw or sink_psw or sink_btn or sink_pbtn or sink_uart;
 
    ---<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>---
@@ -244,23 +248,7 @@ begin
 		 RE         => RE 
 		 );
    data_dbg <= data_in when RE='1' else data_out;
-	-- <<< LC3 CPU using multiplexers end of instantiation>>>	
-	
-		 
---	-- <<< LC3 CPU using tristates for the data bus>>>
---	lc3_t: entity work.lc3_wrapper_tristates
---	port map (
---		 clk        => clk,
---		 clk_enable => cpu_clk_enable,
---		 reset      => sys_reset,
---		 program    => sys_program,
---		 addr       => address,
---		 data       => data,
---		 WE         => WE,
---		 RE         => RE 
---		 );
---   data_dbg <= data;
---	-- <<< LC3 CPU using tristates end of instantiation>>>
+
 	
 	--Information that is sent to the debugging module
    address_dbg <= address;
@@ -287,6 +275,7 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     Zpbtn   <= x"000" & pbtn;
     E_KBSR  <= KBSR & "000000000000000";
     DSR     <= not tx_full & "000000000000000";
+    tx_data <= data_out(7 downto 0);
     
     
     
@@ -297,9 +286,9 @@ MemMUX: entity work.MUX
                -- Input til MUXen.
                MEM      =>  MEM_MUX,
                STDIN_S  =>  E_KBSR,
-               STDIN_D  =>  STDIN_D_SIGNAL,
-               STDOUT_S =>  STDOUT_S_SIGNAL,
-               STDOUT_D =>  w_data,
+               STDIN_D  =>  KBDR,
+               STDOUT_S =>  DSR,
+--               STDOUT_D =>  w_data,
                IO_SW    =>  Zsw,
                IO_PSW   =>  Zpsw,
                IO_BTN   =>  Zbtn,
@@ -316,18 +305,19 @@ MemMUX: entity work.MUX
     Address_Control_Logic: entity work.ACL
         port map (
               addr          => address,
-            --  RE            => RE,
+              RE            => RE,
               WE            => WE,
               mem_en        => mem_en,
               ACL_MUX       => ACL_MUX,
-              cs_STDIN_S    => cs_STDIN_S,
-              cs_STDIN_D    => cs_STDIN_D,
-              cs_STDOUT_S   => cs_STDOUT_S,
-              cs_STDOUT_D   => cs_STDOUT_D,
+--              cs_STDIN_S    => cs_STDIN_S,
+--              cs_STDIN_D    => cs_STDIN_D,
+--              cs_STDOUT_S   => cs_STDOUT_S,
+--              cs_STDOUT_D   => cs_STDOUT_D,
               cs_IO_SSEG    => cs_IO_SSEG,
               cs_IO_LED     => cs_IO_LED,
               cs_IO_PLED    => cs_IO_PLED,
-              rx_rd         => rx_rd
+              rx_rd         => test_signal,
+              tx_wr         =>  test_signal2
         );
     
     
@@ -368,31 +358,31 @@ MemMUX: entity work.MUX
 --            data_out=> STDIN_S_SIGNAL
 --        );
     -- STDIN Data register.
-    IO_STDIN_D_Register : entity work.IO_Register
-        port map (
-            clk     => clk,
-            reset   => sys_reset,
-            cs_en   => '1',
-            data_in => KBDR,
-            data_out=> STDIN_D_SIGNAL
-        );
-    -- STDOUT Status register.
-    IO_STDOUT_S_Register : entity work.IO_Register
-        port map (
-            clk     => clk,
-            reset   => sys_reset,
-            cs_en   => cs_STDOUT_S,
-            data_in => DSR,
-            data_out=> STDOUT_S_SIGNAL
-        );
-    -- STDOUT Data register.
-    IO_STDOUT_D_Register : entity work.IO_Register
-        port map (
-            clk     => clk,
-            reset   => sys_reset,
-            cs_en   => cs_STDOUT_D,
-            data_in => data_out,
-            data_out=> w_data
-        );
+--    IO_STDIN_D_Register : entity work.IO_Register
+--        port map (
+--            clk     => clk,
+--            reset   => sys_reset,
+--            cs_en   => '1',
+--            data_in => KBDR,
+--            data_out=> STDIN_D_SIGNAL
+--        );
+--    -- STDOUT Status register.
+--    IO_STDOUT_S_Register : entity work.IO_Register
+--        port map (
+--            clk     => clk,
+--            reset   => sys_reset,
+--            cs_en   => cs_STDOUT_S,
+--            data_in => DSR,
+--            data_out=> STDOUT_S_SIGNAL
+--        );
+--    -- STDOUT Data register.
+--    IO_STDOUT_D_Register : entity work.IO_Register
+--        port map (
+--            clk     => clk,
+--            reset   => sys_reset,
+--            cs_en   => cs_STDOUT_D,
+--            data_in => data_out,
+--            data_out=> w_data
+--        );
 end Behavioral;
 
