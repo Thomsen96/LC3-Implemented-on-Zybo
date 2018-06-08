@@ -85,11 +85,11 @@ architecture Behavioral of lc3_computer is
     alias btn_s : std_logic is btn(4); --Button SELECT (center button)
     alias btn_c : std_logic is btn(4); --Button CENTER
    
---    signal sink_sw : std_logic;
---    signal sink_psw : std_logic;
---    signal sink_btn : std_logic;
---    signal sink_pbtn : std_logic;
---    signal sink_uart : std_logic;
+    signal sink_sw : std_logic;
+    signal sink_psw : std_logic;
+    signal sink_btn : std_logic;
+    signal sink_pbtn : std_logic;
+    signal sink_uart : std_logic;
    
 	-- Memory interface signals
 	signal address: std_logic_vector(15 downto 0);
@@ -190,8 +190,7 @@ begin
 
    --Virtual hexadecimal display on Zybo VIO
 --   hex <= X"1234"; 
-    --hex <= IO_SSEG_SIGNAL;
-    hex <= x"00" & rx_data;
+    hex <= IO_SSEG_SIGNAL;
     --hex <= "000" & test_signal2 & "000" & test_signal & KBDR(7 downto 0) ;
    -- Denn linje tester de fysiske switches og knapper samt VIO switches.
    -- hex <= psw(3 downto 0) & pbtn(3 downto 0) & IO_SSEG_SIGNAL(7 downto 0);
@@ -217,13 +216,13 @@ begin
    --be used at least once, by orring them and assigning the resulting the value to sink.
    --You are not suppoosed to modify the following lines of VHDL code, where inputs are orred and
    --assigned to the sink. 
---   sink_psw <= psw(0) or psw(1) or psw(2) or psw(3);
---   sink_pbtn <= pbtn(0) or pbtn(1) or pbtn(2) or pbtn(3);
---   sink_sw <= sw(0) or sw(1) or sw(2) or sw(3) or sw(4) or sw(5) or sw(6) or sw(7); 
---   sink_btn <= btn(0) or btn(1) or btn(2) or btn(3) or btn(4);
---   sink_uart <= rx_data(0) or rx_data(1) or rx_data(2) or rx_data(3) or rx_data(4) or 
---					 rx_data(5) or rx_data(6) or rx_data(7)or rx_empty or tx_full; 
---   sink <= sink_sw or sink_psw or sink_btn or sink_pbtn or sink_uart;
+   sink_psw <= psw(0) or psw(1) or psw(2) or psw(3);
+   sink_pbtn <= pbtn(0) or pbtn(1) or pbtn(2) or pbtn(3);
+   sink_sw <= sw(0) or sw(1) or sw(2) or sw(3) or sw(4) or sw(5) or sw(6) or sw(7); 
+   sink_btn <= btn(0) or btn(1) or btn(2) or btn(3) or btn(4);
+   sink_uart <= rx_data(0) or rx_data(1) or rx_data(2) or rx_data(3) or rx_data(4) or 
+					 rx_data(5) or rx_data(6) or rx_data(7)or rx_empty or tx_full; 
+   sink <= sink_sw or sink_psw or sink_btn or sink_pbtn or sink_uart;
 
    ---<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>---
    ---<<<<< End of pregenerated code >>>>>---
@@ -277,7 +276,7 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     Zbtn    <= "00000000000" & btn;
     Zpbtn   <= x"000" & pbtn;
     E_KBSR  <= not(rx_empty) & "000000000000000";
-    DSR     <= not tx_full & "000000000000000";
+    DSR     <= not(tx_full) & "000000000000000";
     tx_data <= data_out(7 downto 0);
     
     

@@ -260,3 +260,23 @@ launch_runs impl_1 -to_step write_bitstream -jobs 4
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
 [Fri Jun  8 15:17:50 2018] Launched impl_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Fri Jun  8 15:27:51 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 15:27:51 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Fri Jun  8 15:35:54 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 15:35:54 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
+close_design
+close_design: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2111.203 ; gain = 0.000
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Fri Jun  8 15:44:00 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun  8 15:44:00 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
