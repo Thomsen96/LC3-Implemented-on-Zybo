@@ -2,27 +2,48 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Thu Jun  7 16:15:38 2018
-# Process ID: 11432
+# Start of session at: Fri Jun  8 09:18:05 2018
+# Process ID: 11880
 # Current directory: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10472 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5420 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
 # Log file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.log
 # Journal file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.xpr
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
 reset_run synth_1
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 reset_run synth_1
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+show_objects -name KBSR [get_cells -hierarchical "*" ]
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
 reset_run synth_1
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 reset_run synth_1
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+close_design
+open_run impl_1
+show_objects -name STDOUT_S_SIGNAL [get_cells -hierarchical "*" ]
+show_objects -name STDOUT_S_SIGNAL [get_cells -hierarchical "*" ]
+show_objects -name STDIN_S_SIGNAL [get_cells -hierarchical "*" ]
+show_objects -name STDIN_S_SIGNAL [get_cells -hierarchical "*" ]
+show_objects -name KBSR [get_cells -hierarchical "*" ]

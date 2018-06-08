@@ -76,6 +76,7 @@ architecture Behavioral of lc3_computer is
 --	attribute	keep	of	WE_dbg		: signal	is	"true";
 --	attribute	keep	of	sink			: signal	is	"true";
 
+
    --Creating user friently names for the buttons
     alias btn_u : std_logic is btn(0); --Button UP
     alias btn_l : std_logic is btn(1); --Button LEFT
@@ -146,6 +147,8 @@ architecture Behavioral of lc3_computer is
         signal KBDR         : std_logic_vector(15 downto 0);
         signal DSR         : std_logic_vector(15 downto 0);
         signal w_data       : std_logic_vector(15 downto 0);
+        
+--            attribute	keep	of	STDIN_D_SIGNAL			: signal	is	"true";
 	
 begin
   ---<<<<<<<<<<<<<<>>>>>>>>>>>>>>>---
@@ -192,9 +195,10 @@ begin
 	--Virtual I/O UART
 	KBSR <= not(rx_empty);
 	KBDR <= x"00" & rx_data;
+	tx_wr <= STDOUT_S_SIGNAL(15);
 	tx_data <=  w_data(7 downto 0);
 	--rx_rd <= '0';
-	tx_wr <= '0';
+	--tx_wr <= '0';
 	--tx_data <= X"00";
 	
 	--Input data for the LC3 CPU
@@ -210,8 +214,8 @@ begin
    sink_pbtn <= pbtn(0) or pbtn(1) or pbtn(2) or pbtn(3);
    sink_sw <= sw(0) or sw(1) or sw(2) or sw(3) or sw(4) or sw(5) or sw(6) or sw(7); 
    sink_btn <= btn(0) or btn(1) or btn(2) or btn(3) or btn(4);
-	sink_uart <= rx_data(0) or rx_data(1) or rx_data(2) or rx_data(3) or rx_data(4) or 
-					 rx_data(5) or rx_data(6) or rx_data(7)or rx_empty or tx_full; 
+    --sink_uart <= rx_data(0) or rx_data(1) or rx_data(2) or rx_data(3) or rx_data(4) or 
+	--				 rx_data(5) or rx_data(6) or rx_data(7)or rx_empty or tx_full; 
    sink <= sink_sw or sink_psw or sink_btn or sink_pbtn or sink_uart;
 
    ---<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>---
@@ -284,6 +288,8 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     E_KBSR  <= KBSR & "000000000000000";
     DSR     <= not tx_full & "000000000000000";
     
+    
+    
 MemMUX: entity work.MUX
     port map (
                MUX_in   =>  ACL_MUX,
@@ -352,21 +358,21 @@ MemMUX: entity work.MUX
                 data_in => data_out,
                 data_out=> IO_SSEG_SIGNAL
             );
-    -- STDIN Status register.
-    IO_STDIN_S_Register : entity work.IO_Register
-        port map (
-            clk     => clk,
-            reset   => sys_reset,
-            cs_en   => cs_STDIN_S,
-            data_in => data_out,
-            data_out=> STDIN_S_SIGNAL
-        );
+--    -- STDIN Status register.
+--    IO_STDIN_S_Register : entity work.IO_Register
+--        port map (
+--            clk     => clk,
+--            reset   => sys_reset,
+--            cs_en   => cs_STDIN_S,
+--            data_in => data_out,
+--            data_out=> STDIN_S_SIGNAL
+--        );
     -- STDIN Data register.
     IO_STDIN_D_Register : entity work.IO_Register
         port map (
             clk     => clk,
             reset   => sys_reset,
-            cs_en   => cs_STDIN_D,
+            cs_en   => '1',
             data_in => KBDR,
             data_out=> STDIN_D_SIGNAL
         );
