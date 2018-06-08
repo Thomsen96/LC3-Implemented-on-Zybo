@@ -62,9 +62,9 @@ architecture Behavioral of ACL is
             ACL_MUX     <= "00001";
             
         elsif( addr = STDIN_D) then     -- STD IN Data
-            --if (RE = '1') then
+            if (RE = '1') then
                 rx_rd       <= '1';
-            --end if;
+            end if;
             ACL_MUX     <= "00010";
             
         elsif( addr = STDOUT_S) then    -- STD OUT Status

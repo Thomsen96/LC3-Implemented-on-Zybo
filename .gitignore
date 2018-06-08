@@ -10,4 +10,5 @@
 *.jou
 *.log
 LC3_Projekt/LC3_Projekt.runs/
+!LC3_Projekt/LC3_Projekt.runs/impl_1/LC3Zybo_top.bit
 LC3_Projekt/vivado*
