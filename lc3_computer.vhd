@@ -128,7 +128,7 @@ architecture Behavioral of lc3_computer is
         
         signal STDIN_S_SIGNAL         : std_logic_vector(15 downto 0);   
         signal STDIN_D_SIGNAL          : std_logic_vector(15 downto 0);
-        signal STDOUT_S_SIGNAL         : std_logic_vector(15 downto 0);  -- Serial OUT (terminal  display)
+       -- signal STDOUT_S_SIGNAL         : std_logic_vector(15 downto 0);  -- Serial OUT (terminal  display)
         signal STDOUT_D_SIGNAL  : std_logic_vector(15 downto 0);
         signal IO_SSEG_SIGNAL   : std_logic_vector(15 downto 0);  -- 7 segment
         signal IO_LED_SIGNAL    : std_logic_vector(15 downto 0);  -- Leds
@@ -190,21 +190,23 @@ begin
 
    --Virtual hexadecimal display on Zybo VIO
 --   hex <= X"1234"; 
-    --hex <= IO_SSEG_SIGNAL;
-    hex <= "000" & test_signal2 & "000" & test_signal & KBDR(7 downto 0) ;
+    hex <= IO_SSEG_SIGNAL;
+    --hex <= "000" & test_signal2 & "000" & test_signal & KBDR(7 downto 0) ;
    -- Denn linje tester de fysiske switches og knapper samt VIO switches.
    -- hex <= psw(3 downto 0) & pbtn(3 downto 0) & IO_SSEG_SIGNAL(7 downto 0);
    
 	--Virtual I/O UART
 	KBSR <= not(rx_empty);
 	KBDR <= x"00" & rx_data;
-	tx_wr <= STDOUT_S_SIGNAL(15);
+	--tx_wr <= STDOUT_S_SIGNAL(15);
 	--tx_data <=  w_data(7 downto 0);
 	--rx_rd <= '0';
 	--tx_wr <= '0';
 	--tx_data <= X"00";
-	 rx_rd <= test_signal;
-	 tx_wr <= test_signal2;
+	-- rx_rd <= test_signal;
+	-- tx_wr <= test_signal2;
+	 
+	 
 	--Input data for the LC3 CPU
 	--data_in <= X"0000";
 
@@ -316,8 +318,8 @@ MemMUX: entity work.MUX
               cs_IO_SSEG    => cs_IO_SSEG,
               cs_IO_LED     => cs_IO_LED,
               cs_IO_PLED    => cs_IO_PLED,
-              rx_rd         => test_signal,
-              tx_wr         =>  test_signal2
+              rx_rd         => rx_rd,
+              tx_wr         =>  tx_wr
         );
     
     
