@@ -37,6 +37,15 @@ entity lc3_computer is
         tx_data          : out std_logic_vector(7 downto 0);
         tx_wr            : out std_logic;
         tx_full          : in  std_logic;
+        
+		--UART serial
+        pc_rx_data          : in  std_logic_vector(7 downto 0);
+        pc_rx_rd            : out std_logic;
+        pc_rx_empty         : in  std_logic;
+        pc_tx_data          : out std_logic_vector(7 downto 0);
+        pc_tx_wr            : out std_logic;
+        pc_tx_full          : in  std_logic;		
+		
 		
 		sink             : out std_logic;
 
@@ -147,8 +156,18 @@ architecture Behavioral of lc3_computer is
         signal KBDR         : std_logic_vector(15 downto 0);
         signal DSR         : std_logic_vector(15 downto 0);
 
-        -- Signaler til Vores UART.
-        signal 
+        signal PC_RX_SR         : std_logic_vector(15 downto 0);
+        signal PC_RX_DR         : std_logic_vector(15 downto 0);
+--        signal PC_RX_RD         : std_logic;
+        
+        signal PC_TX_SR         : std_logic_vector(15 downto 0);
+        --signal PC_TX_DR         : std_logic_vector(15 downto 0);
+--        signal PC_TX_WR         : std_logic;
+        
+--        signal PC_tx_full       : std_logic;
+--        signal PC_rx_empty      : std_logic;
+    
+        
         
 --            attribute	keep	of	STDIN_D_SIGNAL			: signal	is	"true";
 	
@@ -279,18 +298,22 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     DSR     <= not(tx_full) & "000000000000000";
     tx_data <= data_out(7 downto 0);
     
-    
+    -- UART
+    PC_RX_DR <= x"00" & pc_rx_data;
+    PC_RX_SR <= not(pc_rx_empty) & "000000000000000";
+    PC_TX_SR <= not(pc_tx_full) &  "000000000000000";
+    pc_tx_data <= data_out(7 downto 0);
     
 MemMUX: entity work.MUX
     port map (
-               MUX_in   =>  ACL_MUX,
-               MUX_out  =>  data_in,
+               MUX_in   =>  ACL_MUX, -- Select signalet 5-bit
+               MUX_out  =>  data_in, -- Output signalet 16-bit
                -- Input til MUXen.
                MEM      =>  MEM_MUX,
                STDIN_S  =>  E_KBSR,
                STDIN_D  =>  KBDR,
                STDOUT_S =>  DSR,
---               STDOUT_D =>  w_data,
+--               STDOUT_D =>  w_data,       
                IO_SW    =>  Zsw,
                IO_PSW   =>  Zpsw,
                IO_BTN   =>  Zbtn,
@@ -300,8 +323,9 @@ MemMUX: entity work.MUX
                IO_PLED  =>  IO_PLED_SIGNAL,
                SPI_in   =>  x"FFFB",
                SPI_out  =>  x"FFFC",
-               UART_in  =>  x"FFFD",
-               UART_out =>  x"FFFE"
+               UART_RX_D  =>  PC_RX_DR,
+               UART_RX_S  =>  PC_RX_SR,
+               UART_TX_S =>  PC_TX_SR
                );
 
     Address_Control_Logic: entity work.ACL
@@ -311,15 +335,13 @@ MemMUX: entity work.MUX
               WE            => WE,
               mem_en        => mem_en,
               ACL_MUX       => ACL_MUX,
---              cs_STDIN_S    => cs_STDIN_S,
---              cs_STDIN_D    => cs_STDIN_D,
---              cs_STDOUT_S   => cs_STDOUT_S,
---              cs_STDOUT_D   => cs_STDOUT_D,
               cs_IO_SSEG    => cs_IO_SSEG,
               cs_IO_LED     => cs_IO_LED,
               cs_IO_PLED    => cs_IO_PLED,
               rx_rd         => rx_rd,
-              tx_wr         =>  tx_wr
+              tx_wr         =>  tx_wr,
+              pc_rx_rd         => pc_rx_rd,
+              pc_tx_wr         =>  pc_tx_wr             
         );
     
     
@@ -351,18 +373,5 @@ MemMUX: entity work.MUX
                 data_out=> IO_SSEG_SIGNAL
             );
 
-    IO_UART_PC : entity work.UART
-        port map(
-            clk     =>  clk,
-            reset   =>  sys_rest,
-            rd_uart =>  
-            wr_uart =>
-            rx      =>
-            w_data  =>
-            tx_full =>
-            rx_empty=>
-            r_data  =>
-            tx 		=>
-            );
-end Behavioral;
 
+end Behavioral;

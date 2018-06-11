@@ -1,20 +1,21 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
---library UNISIM;
+--library UNISIM;s
 --use UNISIM.VComponents.all;
 
-entity uart is 
+
+entity UART is 
 generic ( 
 -- Default setting: 
 -- 19200 baud, 8 data bits , 1 stop bit , 2 '2 FIFO 
-	DBIT : integer : =8 ;      -- # data bits 
+	DBIT : integer :=8 ;      -- # data bits 
 	SB_TICK : integer :=16;    -- It ticks for stop bits _ 16/24/32  
 	                           -- for 1/1_ 5/2 stop bits 
 	DVSR : integer := 163;     -- baud rate divisor 
 	                           --DVSR = 50M/( 1 6* baud rate) 
-	DVSR_BIT : integer: =8;    -- # bits of DVSR 
-	FIFO_W : integer: =2 	   -- tt addr bits of FIFO is - # words in FIFO = 2 ' FIFO _ W 
+	DVSR_BIT : integer:=8;    -- # bits of DVSR 
+	FIFO_W : integer:=2 	   -- tt addr bits of FIFO is - # words in FIFO = 2 ' FIFO _ W 
 ); 
 
 port ( 
@@ -26,15 +27,15 @@ port (
 	tx_full , rx_empty 	: out std_logic; 
 	r_data				: out std_logic_vector (7 downto 0 ); 
 	tx 					: out std_logic); 
-end uart ; 
+end UART ; 
 
 
 
 
-architecture str_arch of uart is 
+architecture str_arch of UART is 
 
 signal tick 		: std_logic ; 
-signal rx_done_t i ck : std_logic; 
+signal rx_done_tick : std_logic; 
 signal tx_fifo_out	: std_logic_vector(7 downto 0 ); 
 signal rx_data_out 	: std_logic_vector (7 downto 0 ); 
 signal tx_empty, tx_fifo_not_empty : std_logic;
@@ -50,13 +51,15 @@ begin
 			clk 	=> clk,
 			reset	=>reset, 
 			q		=>open,
-			max_tick = >tick
+			max_tick =>tick
 			); 
 
-	uart_rx_unit : entity work.uart_rx ( arch) 
+	uart_rx_unit: entity work.uart_rx(arch) 
 		generic map(DBIT=>DBIT , SB_TICK=>SB_TICK) 
 		port map (
-		  reset=>reset , rx=>rx , 
+		  clk => clk,
+		  reset=>reset ,
+		  rx=>rx, 
 		  s_tick => tick ,
 		  rx_done_tick => rx_done_tick , 
 		  dout=>rx_data_out
@@ -65,8 +68,7 @@ begin
 		
 	fifo_rx_unit : entity work.fifo(arch) 
 		generic map(
-			B=>DBIT, 
-			W=>FIF0_W)
+			B=>DBIT,W=>FIFO_W)
 		port map ( 
 			clk=> clk, 
 			reset=>reset, 
@@ -81,10 +83,10 @@ begin
 	fifo_tx_unit : entity work.fifo(arch) 
 		generic map(
 			B=>DBIT,
-			W=>FIF0_W) 
+			W=>FIFO_W) 
 		port map ( 
-			clk = >clk ,
-			reset = >reset ,
+			clk =>clk ,
+			reset =>reset ,
 			rd=>tx_done_tick ,
 			wr=>wr_uart , 
 			w_data=>w_data ,
@@ -101,10 +103,10 @@ begin
 			clk=>clk,
 			reset=>reset, 
 			tx_start => tx_fifo_not_empty , 
-			s_tick = >tick ,
-			din = >tx_fifo_out , 
-			tx_done_tick = > tx_done_tick , 
-			tx = >tx
+			s_tick =>tick,
+			din =>tx_fifo_out , 
+			tx_done_tick => tx_done_tick , 
+			tx => tx
 			); 
 
 	tx_fifo_not_empty <= not(tx_empty); 

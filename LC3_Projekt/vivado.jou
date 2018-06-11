@@ -16,3 +16,84 @@ add_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Proje
 add_files -norecurse C:/Users/Jonas/Desktop/mod_m_counter.vhd
 update_files -from_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd -to_files C:/Users/Jonas/Desktop/mod_m_counter.vhd -filesets [get_filesets *]
 add_files -norecurse {C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd}
+set_property library work [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd]
+add_files -norecurse C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd
+reorder_files -after C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd
+reorder_files -after C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd
+reorder_files -back C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd
+reorder_files -front C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd
+reorder_files -front C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd
+reorder_files -front C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd
+reorder_files -front C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+set_property IS_GLOBAL_INCLUDE 1 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd]
+set_property IS_GLOBAL_INCLUDE 1 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd]
+set_property IS_GLOBAL_INCLUDE 1 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd]
+set_property IS_GLOBAL_INCLUDE 1 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd]
+set_property IS_GLOBAL_INCLUDE 1 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd]
+set_property library work [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd]
+update_compile_order -fileset sources_1
+set_property library work [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd]
+update_compile_order -fileset sources_1
+set_property library work [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd]
+update_compile_order -fileset sources_1
+set_property LIBRARY work [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd]
+update_compile_order -fileset sources_1
+set_property IS_GLOBAL_INCLUDE 0 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd]
+set_property IS_GLOBAL_INCLUDE 0 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd]
+set_property IS_GLOBAL_INCLUDE 0 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd]
+set_property IS_GLOBAL_INCLUDE 0 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd]
+set_property IS_GLOBAL_INCLUDE 0 [get_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+set_property library xil_defaultlib [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd]
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+set_property library xil_defaultlib [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd]
+update_compile_order -fileset sources_1
+set_property library xil_defaultlib [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd]
+update_compile_order -fileset sources_1
+set_property library xil_defaultlib [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd]
+update_compile_order -fileset sources_1
+set_property library xil_defaultlib [get_files  C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd]
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1
+reset_run synth_1
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+refresh_design
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1

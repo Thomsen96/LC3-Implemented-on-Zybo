@@ -19,43 +19,50 @@ entity LC3Zybo_top is
       blinky : out std_logic;
       pbtn : in std_logic_vector(3 downto 0);
       psw : in std_logic_vector(3 downto 0);
-      pled : out std_logic_vector(2 downto 0)
+      pled : out std_logic_vector(2 downto 0);
+      -- VORES SIGNALER TIL UART
+      pc_rx   :   in  std_logic;
+      pc_tx   :   out  std_logic
   );
 end LC3Zybo_top;
 
 architecture Behavioral of LC3Zybo_top is	
    COMPONENT ZyboVIO_SE
 	PORT(
-		vsw : OUT std_logic_vector(7 downto 0);
-		vbtn : OUT std_logic_vector(4 downto 0);          
-		vled : IN std_logic_vector(7 downto 0);
-      vsseg : IN std_logic_vector (7 downto 0);
-      van : IN std_logic_vector (3 downto 0);
-      useVHex47Seg : IN std_logic;
-		vhex : IN std_logic_vector(15 downto 0);
-      sink : IN std_logic;
-      blinky : OUT std_logic
+        vsw : OUT std_logic_vector(7 downto 0);
+        vbtn : OUT std_logic_vector(4 downto 0);          
+        vled : IN std_logic_vector(7 downto 0);
+        vsseg : IN std_logic_vector (7 downto 0);
+        van : IN std_logic_vector (3 downto 0);
+        useVHex47Seg : IN std_logic;
+        vhex : IN std_logic_vector(15 downto 0);
+        sink : IN std_logic;
+        blinky : OUT std_logic
 		);
 	END COMPONENT;
    attribute box_type : string; 
    attribute box_type of ZyboVIO_SE : component is "black_box"; 
 
 
-   signal clk : std_logic;   
-   signal sw : std_logic_vector (7 downto 0);
+    signal clk : std_logic;   
+    signal sw : std_logic_vector (7 downto 0);
 	signal btn : std_logic_vector(4 downto 0);          
 	signal led : std_logic_vector(7 downto 0);
-   signal sseg : std_logic_vector(7 downto 0);
-   signal an : std_logic_vector(3 downto 0);
+    signal sseg : std_logic_vector(7 downto 0);
+    signal an : std_logic_vector(3 downto 0);
 	signal hex : std_logic_vector(15 downto 0);
 	signal dot : std_logic_vector(3 downto 0);
-   signal useHex47Seg : std_logic;
-   signal psw_d : std_logic_vector(3 downto 0);
-   signal pbtn_d : std_logic_vector(3 downto 0);
-   signal sink : std_logic;
+    signal useHex47Seg : std_logic;
+    signal psw_d : std_logic_vector(3 downto 0);
+    signal pbtn_d : std_logic_vector(3 downto 0);
+    signal sink : std_logic;
 	signal rx_data, tx_data : std_logic_vector(7 downto 0);
-   signal rx_empty, tx_full : std_logic;
-   signal rx_rd, tx_wr : std_logic;
+    signal rx_empty, tx_full : std_logic;
+    signal rx_rd, tx_wr : std_logic;
+    
+    -- Vi tilføjer vores UART signaler her!
+    -- Signaler til Vores UART.
+    --signal pc_rx, pc_tx : std_logic;
 begin
 
 	--Here is an instance of the component where students can write their code
@@ -71,15 +78,18 @@ begin
 		pbtn => pbtn_d,
 		psw => psw_d,
 		pled => pled,
-      sink => sink,
+        sink => sink,
 		
 		rx_data => rx_data,
-      rx_rd => rx_rd,
-      rx_empty => rx_empty,
-      tx_data => tx_data,
-      tx_wr => tx_wr,
-      tx_full => tx_full
+        rx_rd => rx_rd,
+        rx_empty => rx_empty,
+        tx_data => tx_data,
+        tx_wr => tx_wr,
+        tx_full => tx_full,
 		
+		--                    VORES UART signaler.!!
+        pc_rx => pc_rx,
+        pc_tx => pc_tx
 	);
 
 	--Here we instantiate the component that allows us to connect to the 

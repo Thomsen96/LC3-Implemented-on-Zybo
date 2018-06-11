@@ -7,25 +7,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity MUX is
     Port ( 
             -- Selctor og output
-           MUX_in : in STD_LOGIC_VECTOR (4 downto 0);
-           MUX_out : out STD_LOGIC_VECTOR (15 downto 0);
-           -- Input til MUXen.
-           MEM      : in STD_LOGIC_VECTOR (15 downto 0);
-           STDIN_S    : in STD_LOGIC_VECTOR (15 downto 0);
-           STDIN_D     : in STD_LOGIC_VECTOR (15 downto 0);
-           STDOUT_S     : in STD_LOGIC_VECTOR (15 downto 0);
---           STDOUT_D     : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_SW     : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_PSW    : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_BTN      : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_PBTN     : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_SSEG  : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_LED      : in STD_LOGIC_VECTOR (15 downto 0);
-           IO_PLED     : in STD_LOGIC_VECTOR (15 downto 0);
-           SPI_in   : in STD_LOGIC_VECTOR (15 downto 0);
-           SPI_out  : in STD_LOGIC_VECTOR (15 downto 0);
-           UART_in  : in STD_LOGIC_VECTOR (15 downto 0);
-           UART_out : in STD_LOGIC_VECTOR (15 downto 0)
+            MUX_in : in STD_LOGIC_VECTOR (4 downto 0);
+            MUX_out : out STD_LOGIC_VECTOR (15 downto 0);
+            -- Input til MUXen.
+            MEM      : in STD_LOGIC_VECTOR (15 downto 0);
+            STDIN_S    : in STD_LOGIC_VECTOR (15 downto 0);
+            STDIN_D     : in STD_LOGIC_VECTOR (15 downto 0);
+            STDOUT_S     : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_SW     : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_PSW    : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_BTN      : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_PBTN     : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_SSEG  : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_LED      : in STD_LOGIC_VECTOR (15 downto 0);
+            IO_PLED     : in STD_LOGIC_VECTOR (15 downto 0);
+            SPI_in   : in STD_LOGIC_VECTOR (15 downto 0);
+            SPI_out  : in STD_LOGIC_VECTOR (15 downto 0);
+            UART_RX_D  : in STD_LOGIC_VECTOR (15 downto 0);
+            UART_RX_S    : in STD_LOGIC_VECTOR (15 downto 0);
+            UART_TX_S : in STD_LOGIC_VECTOR (15 downto 0)
            );
            
 end MUX;
@@ -45,10 +45,11 @@ begin
                     IO_SSEG   when "01001",
                     IO_LED      when "01010",
                     IO_PLED     when "01011",
-                    SPI_in   when "01100",
-                    SPI_out  when "01101",
-                    UART_in  when "01110",
-                    UART_out when "01111",
+                    UART_RX_S  when "01100",
+                    UART_RX_D  when "01101",
+                    --UART_TX_D when  "01110",
+                    UART_TX_S when  "01111",
+                    SPI_in   when   "10000",
+                    SPI_out  when   "10001",
                     x"FFFF"  when others;
-
 end Behavioral;

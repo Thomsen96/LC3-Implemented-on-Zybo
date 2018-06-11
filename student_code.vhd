@@ -15,47 +15,59 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity student_code is
     Port ( 
-			  clk : in  STD_LOGIC;
-			  
-			  btn : in  STD_LOGIC_VECTOR (4 downto 0);
-           sw : in  STD_LOGIC_VECTOR (7 downto 0);
-           led : out  STD_LOGIC_VECTOR (7 downto 0);
-           hex : out STD_LOGIC_VECTOR (15 downto 0);
-			  dot : out std_logic_vector (3 downto 0);
-           pbtn : in  STD_LOGIC_VECTOR (3 downto 0);
-           psw : in  STD_LOGIC_VECTOR (3 downto 0);
-           pled : out  STD_LOGIC_VECTOR (2 downto 0);
-           sink : out STD_LOGIC;
+        clk : in  STD_LOGIC;
+        
+        btn : in  STD_LOGIC_VECTOR (4 downto 0);
+        sw : in  STD_LOGIC_VECTOR (7 downto 0);
+        led : out  STD_LOGIC_VECTOR (7 downto 0);
+        hex : out STD_LOGIC_VECTOR (15 downto 0);
+        dot : out std_logic_vector (3 downto 0);
+        pbtn : in  STD_LOGIC_VECTOR (3 downto 0);
+        psw : in  STD_LOGIC_VECTOR (3 downto 0);
+        pled : out  STD_LOGIC_VECTOR (2 downto 0);
+        sink : out STD_LOGIC;
+        
+        rx_data : in std_logic_vector(7 downto 0);
+        rx_rd : out std_logic;
+        rx_empty : in std_logic;
+        tx_data : out std_logic_vector(7 downto 0);
+        tx_wr : out std_logic;
+        tx_full : in std_logic;
 
-			  rx_data : in std_logic_vector(7 downto 0);
-           rx_rd : out std_logic;
-           rx_empty : in std_logic;
-           tx_data : out std_logic_vector(7 downto 0);
-           tx_wr : out std_logic;
-           tx_full : in std_logic);
+
+        -- Detter er vores UART kode!                                       HER SKRIVER VI!
+        pc_rx : in std_logic;
+        pc_tx : out std_logic);
+        
 end student_code;
 
 architecture Behavioral of student_code is
-   --Creating user friently names for the buttons
-   alias btn_u : std_logic is btn(0); --Button UP
-   alias btn_l : std_logic is btn(1); --Button LEFT
-   alias btn_d : std_logic is btn(2); --Button DOWN
-   alias btn_r : std_logic is btn(3); --Button RIGHT
-   alias btn_s : std_logic is btn(4); --Button SELECT (center button)
-   alias btn_c : std_logic is btn(4); --Button CENTER
-
-   
-   signal cpu_clk_enable : std_logic;
-   signal address: std_logic_vector(15 downto 0);
-   signal data: std_logic_vector(15 downto 0);
-   signal RE, WE: std_logic;
-   signal sys_reset, sys_program : std_logic;
-	signal sseg_reg : std_logic_vector (15 downto 0);
-	signal btn_io : std_logic_vector(4 downto 0);
+    --Creating user friently names for the buttons
+    alias btn_u : std_logic is btn(0); --Button UP
+    alias btn_l : std_logic is btn(1); --Button LEFT
+    alias btn_d : std_logic is btn(2); --Button DOWN
+    alias btn_r : std_logic is btn(3); --Button RIGHT
+    alias btn_s : std_logic is btn(4); --Button SELECT (center button)
+    alias btn_c : std_logic is btn(4); --Button CENTER
+    
+    
+    signal cpu_clk_enable : std_logic;
+    signal address: std_logic_vector(15 downto 0);
+    signal data: std_logic_vector(15 downto 0);
+    signal RE, WE: std_logic;
+    signal sys_reset, sys_program : std_logic;
+    signal sseg_reg : std_logic_vector (15 downto 0);
+    signal btn_io : std_logic_vector(4 downto 0);
    --------------------------------------------------------------------------
    --From here onward you can write your signal and component declarations --
    --------------------------------------------------------------------------
-   
+    
+    signal pc_rx_data   : std_logic_vector(7 downto 0);
+    signal pc_tx_data   : std_logic_vector(7 downto 0);
+    signal pc_rx_empty  : std_logic;
+    signal pc_tx_full   : std_logic;
+    signal pc_rx_rd     : std_logic;
+    signal pc_tx_wr     : std_logic;
    
 begin
 
@@ -75,9 +87,9 @@ begin
 		
 		rx_data => rx_data,
 		tx_data => tx_data,
-      rx_rd => rx_rd,
+        rx_rd => rx_rd,
 		rx_empty => rx_empty,
-      tx_wr => tx_wr,
+        tx_wr => tx_wr,
 		tx_full => tx_full,
 		
 		sink => sink,
@@ -89,7 +101,15 @@ begin
 		address_dbg => address,
 		data_dbg => data,
 		RE_dbg => RE,
-		WE_dbg => WE
+		WE_dbg => WE,
+		
+		--                            VORES UART SINGALER
+		pc_rx_data => pc_rx_data,
+        pc_tx_data => pc_tx_data,
+        pc_rx_rd => pc_rx_rd,
+        pc_rx_empty => pc_rx_empty,
+        pc_tx_wr => pc_tx_wr,
+        pc_tx_full => pc_tx_full
 	);
 	
 	--Instance of the debuging module for the LC3 computer
@@ -112,7 +132,19 @@ begin
    --------------------------------------------------
    --From here onward you can write your VHDL code.--
    --------------------------------------------------
-   
+    IO_UART_PC : entity work.UART
+       port map(
+           clk     =>  clk,
+           reset   =>  sys_reset,
+           rd_uart =>  pc_rx_rd,
+           wr_uart =>  pc_tx_wr,
+           rx      =>  pc_rx,
+           w_data  =>  pc_tx_data,
+           tx_full =>  pc_tx_full,
+           rx_empty=> pc_rx_empty,
+           r_data  => pc_rx_data,
+           tx         => pc_tx
+           );
 	
 	
 end Behavioral;
