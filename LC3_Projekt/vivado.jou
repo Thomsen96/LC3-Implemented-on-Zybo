@@ -2,116 +2,17 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Fri Jun  8 09:18:05 2018
-# Process ID: 11880
+# Start of session at: Mon Jun 11 09:14:10 2018
+# Process ID: 12392
 # Current directory: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5420 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16228 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
 # Log file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.log
 # Journal file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.xpr
-launch_runs impl_1 -jobs 4
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-launch_runs impl_1 -jobs 4
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-open_run impl_1
-show_objects -name KBSR [get_cells -hierarchical "*" ]
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-launch_runs impl_1 -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-launch_runs impl_1 -jobs 4
-wait_on_run impl_1
-close_design
-open_run impl_1
-show_objects -name STDOUT_S_SIGNAL [get_cells -hierarchical "*" ]
-show_objects -name STDOUT_S_SIGNAL [get_cells -hierarchical "*" ]
-show_objects -name STDIN_S_SIGNAL [get_cells -hierarchical "*" ]
-show_objects -name STDIN_S_SIGNAL [get_cells -hierarchical "*" ]
-show_objects -name KBSR [get_cells -hierarchical "*" ]
-close_design
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-open_run synth_1 -name synth_1
-launch_runs impl_1 -jobs 4
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-launch_runs impl_1 -jobs 4
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-close_design
-open_run impl_1
-open_run synth_1 -name synth_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-close_design
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-close_design
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
+close [ open C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd w ]
+add_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/UART.vhd
+add_files -norecurse C:/Users/Jonas/Desktop/mod_m_counter.vhd
+update_files -from_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/mod_m_counter.vhd -to_files C:/Users/Jonas/Desktop/mod_m_counter.vhd -filesets [get_filesets *]
+add_files -norecurse {C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/fifo.vhd C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_rx.vhd C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/uart_tx.vhd}

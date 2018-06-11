@@ -142,13 +142,13 @@ architecture Behavioral of lc3_computer is
         signal cs_IO_LED     : std_logic;  -- Leds
         signal cs_IO_PLED    : std_logic;  -- Physical Leds
         
-        -- Signaler til UART
+        -- Signaler til VIO UART
         signal KBSR         : std_logic;
         signal KBDR         : std_logic_vector(15 downto 0);
         signal DSR         : std_logic_vector(15 downto 0);
-        --signal w_data       : std_logic_vector(15 downto 0);
-        --signal test_signal : std_logic;
-        --signal test_signal2 : std_logic;
+
+        -- Signaler til Vores UART.
+        signal 
         
 --            attribute	keep	of	STDIN_D_SIGNAL			: signal	is	"true";
 	
@@ -350,41 +350,19 @@ MemMUX: entity work.MUX
                 data_in => data_out,
                 data_out=> IO_SSEG_SIGNAL
             );
---    -- STDIN Status register.
---    IO_STDIN_S_Register : entity work.IO_Register
---        port map (
---            clk     => clk,
---            reset   => sys_reset,
---            cs_en   => cs_STDIN_S,
---            data_in => data_out,
---            data_out=> STDIN_S_SIGNAL
---        );
-    -- STDIN Data register.
---    IO_STDIN_D_Register : entity work.IO_Register
---        port map (
---            clk     => clk,
---            reset   => sys_reset,
---            cs_en   => '1',
---            data_in => KBDR,
---            data_out=> STDIN_D_SIGNAL
---        );
---    -- STDOUT Status register.
---    IO_STDOUT_S_Register : entity work.IO_Register
---        port map (
---            clk     => clk,
---            reset   => sys_reset,
---            cs_en   => cs_STDOUT_S,
---            data_in => DSR,
---            data_out=> STDOUT_S_SIGNAL
---        );
---    -- STDOUT Data register.
---    IO_STDOUT_D_Register : entity work.IO_Register
---        port map (
---            clk     => clk,
---            reset   => sys_reset,
---            cs_en   => cs_STDOUT_D,
---            data_in => data_out,
---            data_out=> w_data
---        );
+
+    IO_UART_PC : entity work.UART
+        port map(
+            clk     =>  clk,
+            reset   =>  sys_rest,
+            rd_uart =>  
+            wr_uart =>
+            rx      =>
+            w_data  =>
+            tx_full =>
+            rx_empty=>
+            r_data  =>
+            tx 		=>
+            );
 end Behavioral;
 
