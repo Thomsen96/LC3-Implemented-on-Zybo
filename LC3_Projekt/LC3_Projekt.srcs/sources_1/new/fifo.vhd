@@ -4,8 +4,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity fifo is
    generic(
-      B: natural:=8; -- number of bits              -- Antal bits på hver plads
-      W: natural:=4 -- number of address bits       -- Giver 16 pladser i FIFO. 
+      B: natural:=8; -- number of bits
+      W: natural:=4 -- number of address bits
    );
    port(
       clk, reset: in std_logic;
