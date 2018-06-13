@@ -18,9 +18,9 @@ architecture arch of mod_m_counter is
    signal r_reg: unsigned(N-1 downto 0);
    signal r_next: unsigned(N-1 downto 0);
 begin
-   -- register
-   process(clk,reset)
-   begin
+   -- regik,reset)
+   beginster
+   process(cl
       if (reset='1') then
          r_reg <= (others=>'0');
       elsif (clk'event and clk='1') then
