@@ -58,7 +58,13 @@ entity lc3_computer is
 		--LC3 CPU inputs
       cpu_clk_enable   : in  std_logic;
       sys_reset        : in  std_logic;
-      sys_program      : in  std_logic
+      sys_program      : in  std_logic;
+      
+      -- SPI signaler
+      spi_rd  : in  std_logic;
+      spi_s   : in  std_logic_vector(15 downto 0);
+      spi_d   : in  std_logic_vector(15 downto 0);
+      data_to_spi : out std_logic_vector(2 downto 0)
 
    );
 end lc3_computer;
@@ -167,7 +173,8 @@ architecture Behavioral of lc3_computer is
 --        signal PC_tx_full       : std_logic;
 --        signal PC_rx_empty      : std_logic;
     
-        
+        -- SPI
+        data_to_spi <= data_out(2 downto 0);
         
 --            attribute	keep	of	STDIN_D_SIGNAL			: signal	is	"true";
 	

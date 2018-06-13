@@ -4,8 +4,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity mod_m_counter is
    generic(
-      N: integer := 8;     -- number of bits
-      M: integer := 163     -- mod-M
+      N: integer; --:= --8;      -- number of bits
+      M: integer --:= --163     -- mod-M
   );
    port(
       clk, reset: in std_logic;

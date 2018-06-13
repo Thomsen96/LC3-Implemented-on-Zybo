@@ -37,7 +37,16 @@ entity student_code is
 
         -- Detter er vores UART kode!                                       HER SKRIVER VI!
         pc_rx : in std_logic;
-        pc_tx : out std_logic);
+        pc_tx : out std_logic;
+        
+        -- Vores SPI
+        spi_clk : out std_logic;
+        ss_pin : out std_logic;
+        mosi_pin : out std_logic;
+        miso_pin : in std_logic
+        
+        
+        );
         
 end student_code;
 
@@ -68,6 +77,11 @@ architecture Behavioral of student_code is
     signal pc_tx_full   : std_logic;
     signal pc_rx_rd     : std_logic;
     signal pc_tx_wr     : std_logic;
+    
+    signal spi_rd  : std_logic;
+    signal spi_s   : std_logic_vector(15 downto 0);
+    signal spi_d   : std_logic_vector(15 downto 0);
+    signal data_to_spi : std_logic_vector(2 downto 0);
    
 begin
 
@@ -109,7 +123,13 @@ begin
         pc_rx_rd => pc_rx_rd,
         pc_rx_empty => pc_rx_empty,
         pc_tx_wr => pc_tx_wr,
-        pc_tx_full => pc_tx_full
+        pc_tx_full => pc_tx_full,
+        
+        spi_rd  => spi_rd,
+        spi_s   => spi_s,
+        spi_d   => spi_d,
+        data_to_spi => data_to_spi
+        
 	);
 	
 	--Instance of the debuging module for the LC3 computer
@@ -123,8 +143,8 @@ begin
 			btns => btn_s, btnu => btn_u, btnl => btn_l, btnd => btn_d, btnr => btn_r,
 			sys_reset => sys_reset, sys_program => sys_program,
 			sseg_reg => sseg_reg,
-         hex => hex,
-         dot => dot,
+            hex => hex,
+            dot => dot,
 			sw => sw(4 downto 0),
 			btn_dbg_io => btn_io
 	);
@@ -146,6 +166,18 @@ begin
            tx         => pc_tx
            );
 	
-	
+    IO_SPI : entity work.SPI_Wrapper
+              port map(
+                  clk       => clk,
+                  spi_clk   => spi_clk,
+                  reset     => sys_reset,
+                  ss_pin    => ss_pin,
+                  mosi_pin  => mosi_pin,
+                  miso_pin  => miso_pin,
+                  rd        => spi_rd,
+                  SEL       => data_to_spi,
+                  Status    => spi_s,
+                  SPI_to_mux => spi_d
+                  );
 end Behavioral;
 

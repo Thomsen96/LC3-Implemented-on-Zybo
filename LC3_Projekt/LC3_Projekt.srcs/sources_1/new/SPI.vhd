@@ -3,37 +3,33 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 
 entity SPI is
-    Port ( CLK : in  STD_LOGIC;
-           SEL : in  STD_LOGIC_VECTOR (3 downto 0);
-           rd : in  STD_LOGIC;
-           SLAVE_SELECT : out  STD_LOGIC;
-           MOSI : out  STD_LOGIC;
-           MISO : in  STD_LOGIC;
-           REG_DATA : out  STD_LOGIC;
-           READY : out  STD_LOGIC;
-			  SAVE: out STD_LOGIC;
-			  reset: in STD_LOGIC
-			  );
+    Port ( 
+        tick_rise : in std_logic;
+        tick_fall : in std_logic;
+        SEL : in  STD_LOGIC_VECTOR (3 downto 0);
+        rd : in  STD_LOGIC;
+        SLAVE_SELECT : out  STD_LOGIC;
+        MOSI : out  STD_LOGIC;
+        MISO : in  STD_LOGIC;
+        REG_DATA : out  STD_LOGIC;
+        READY : out  STD_LOGIC;
+        SAVE: out STD_LOGIC;
+        reset: in STD_LOGIC
+    );
 end SPI;
 
 architecture Behavioral of SPI is
-	TYPE State_type IS (Waiting, SiDi, D2, D1, D0, Sc0, Sc1, Sc2, Sc3, Sc4, Sc5, Sc6, Sc7, Sc8, Sc9, HALT);
-		SIGNAL state : State_type;
-		
+	TYPE State_type IS (init, start, wait1, rising, falling);
+    signal state : State_type;
+    Begin
+		Process(tick_rise, tick_fall, reset)
 		Begin
-			--REG_DATA <= '0';
-			--SAVE <= '0';
-			--MOSI <= '0';
-			--READY <= '1';
-
-			Process(CLK, reset)
-			Begin
-				if (reset = '1') then
-					REG_DATA <= '0';
-					SAVE <= '0';
-					MOSI <= '0';
-					READY <= '1';
-				elsif(rising_edge(CLK)) then
+			if (reset = '1') then
+				REG_DATA <= '0';
+                SAVE <= '0';
+                MOSI <= '0';
+                READY <= '1';
+            elsif(rising_edge(tick_rise, tick_fall)) then
 					if (RD='1') then
 						CASE state IS
 							When Waiting =>

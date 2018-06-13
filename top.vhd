@@ -22,7 +22,12 @@ entity LC3Zybo_top is
       pled : out std_logic_vector(2 downto 0);
       -- VORES SIGNALER TIL UART
       pc_rx   :   in  std_logic;
-      pc_tx   :   out  std_logic
+      pc_tx   :   out  std_logic;
+      -- Signaler til SPI
+      spi_clk :     out std_logic;
+      ss_pin : out std_logic;
+      mosi_pin : out std_logic;
+      miso_pin : in std_logic
   );
 end LC3Zybo_top;
 
@@ -89,7 +94,14 @@ begin
 		
 		--                    VORES UART signaler.!!
         pc_rx => pc_rx,
-        pc_tx => pc_tx
+        pc_tx => pc_tx,
+        
+        --      SPI til pins
+         spi_clk   => spi_clk,
+         ss_pin    =>  ss_pin,
+         mosi_pin  =>  mosi_pin,
+         miso_pin  =>  miso_pin
+        
 	);
 
 	--Here we instantiate the component that allows us to connect to the 
