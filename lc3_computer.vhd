@@ -61,7 +61,7 @@ entity lc3_computer is
       sys_program      : in  std_logic;
       
       -- SPI signaler
-      spi_rd  : in  std_logic;
+      spi_rd  : out  std_logic;
       spi_s   : in  std_logic_vector(15 downto 0);
       spi_d   : in  std_logic_vector(15 downto 0);
       data_to_spi : out std_logic_vector(2 downto 0)
@@ -173,8 +173,7 @@ architecture Behavioral of lc3_computer is
 --        signal PC_tx_full       : std_logic;
 --        signal PC_rx_empty      : std_logic;
     
-        -- SPI
-        data_to_spi <= data_out(2 downto 0);
+        
         
 --            attribute	keep	of	STDIN_D_SIGNAL			: signal	is	"true";
 	
@@ -311,6 +310,10 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     PC_TX_SR <= not(pc_tx_full) &  "000000000000000";
     pc_tx_data <= data_out(7 downto 0);
     
+    -- SPI
+    -- SPI
+    data_to_spi <= data_out(2 downto 0);
+    
 MemMUX: entity work.MUX
     port map (
                MUX_in   =>  ACL_MUX, -- Select signalet 5-bit
@@ -328,11 +331,12 @@ MemMUX: entity work.MUX
                IO_SSEG  =>  IO_SSEG_SIGNAL,
                IO_LED   =>  IO_LED_SIGNAL,
                IO_PLED  =>  IO_PLED_SIGNAL,
-               SPI_in   =>  x"FFFB",
-               SPI_out  =>  x"FFFC",
+               SPI_S   =>  spi_s,
+               SPI_D  =>  spi_d,
                UART_RX_D  =>  PC_RX_DR,
                UART_RX_S  =>  PC_RX_SR,
                UART_TX_S =>  PC_TX_SR
+               
                );
 
     Address_Control_Logic: entity work.ACL
@@ -347,8 +351,9 @@ MemMUX: entity work.MUX
               cs_IO_PLED    => cs_IO_PLED,
               rx_rd         => rx_rd,
               tx_wr         =>  tx_wr,
-              pc_rx_rd         => pc_rx_rd,
-              pc_tx_wr         =>  pc_tx_wr             
+              pc_rx_rd      => pc_rx_rd,
+              pc_tx_wr      =>  pc_tx_wr,
+              spi_rd        => spi_rd            
         );
     
     

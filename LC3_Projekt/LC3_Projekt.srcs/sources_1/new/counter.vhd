@@ -1,30 +1,29 @@
--- Listing 4.11
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-entity vores_mod_m_counter is
+entity vores_counter is
    generic(
-      N: integer; --:= --8;      -- number of bits
-      M: integer --:= --163     -- mod-M
+      N: integer;       -- antal bits der skal repræsentere det tal man skal tælle til.
+      M: integer        -- Tal man tæller til
   );
    port(
-      clk   : in std_logic;
-      reset : in std_logic;
+      count     : in std_logic;
+      reset     : in std_logic;
       max_tick: out std_logic;
-      q     : out std_logic_vector(N-1 downto 0)
+      q: out std_logic_vector(N-1 downto 0)
    );
-end vores_mod_m_counter;
+end vores_counter;
 
-architecture arch of vores_mod_m_counter is
+architecture arch of vores_counter is
    signal r_reg: unsigned(N-1 downto 0);
    signal r_next: unsigned(N-1 downto 0);
 begin
 -- register
-   process(clk,reset)
+   process(count ,reset)
    begin
       if (reset='1') then
          r_reg <= (others=>'0');
-      elsif (clk'event and clk='1') then
+      elsif (count'event and count='1') then
          r_reg <= r_next;
       end if;
    end process;

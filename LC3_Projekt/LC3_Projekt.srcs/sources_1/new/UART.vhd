@@ -43,7 +43,7 @@ signal tx_done_tick : std_logic;
 
 begin 
 
-	baud_gen_unit: entity work.mod_m_counter(arch) 
+	baud_gen_unit: entity work.vores_mod_m_counter(arch) 
 		generic map(
 			M=>DVSR, 
 			N=>DVSR_BIT)

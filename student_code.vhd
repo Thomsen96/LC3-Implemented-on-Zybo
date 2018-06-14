@@ -125,6 +125,7 @@ begin
         pc_tx_wr => pc_tx_wr,
         pc_tx_full => pc_tx_full,
         
+        --                             Vores SPI
         spi_rd  => spi_rd,
         spi_s   => spi_s,
         spi_d   => spi_d,
@@ -170,7 +171,7 @@ begin
               port map(
                   clk       => clk,
                   spi_clk   => spi_clk,
-                  reset     => sys_reset,
+                  sys_reset     => sys_reset,
                   ss_pin    => ss_pin,
                   mosi_pin  => mosi_pin,
                   miso_pin  => miso_pin,

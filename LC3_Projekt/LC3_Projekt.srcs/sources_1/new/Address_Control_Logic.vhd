@@ -16,8 +16,9 @@ entity ACL is
         cs_IO_PLED      :   out STD_LOGIC;
         rx_rd           :   out STD_LOGIC;
         tx_wr           :   out STD_LOGIC;
-        pc_rx_rd           :   out STD_LOGIC;
-        pc_tx_wr           :   out STD_LOGIC        
+        pc_rx_rd        :   out STD_LOGIC;
+        pc_tx_wr        :   out STD_LOGIC;
+        spi_rd          : out std_logic       
     );
 end ACL;
 
@@ -41,8 +42,8 @@ architecture Behavioral of ACL is
     constant IO_UART_TX_S    : std_logic_vector(15 downto 0) := X"FE1A";  -- UART OUT status register
     constant IO_UART_TX_D    : std_logic_vector(15 downto 0) := X"FE1B";  -- UART OUT data register
     
-    constant IO_SPI_TX_D    : std_logic_vector(15 downto 0) := X"FE1C";  -- UART OUT data register
-    constant IO_SPI_RX_D    : std_logic_vector(15 downto 0) := X"FE1D";  -- UART OUT data register
+    constant IO_SPI_RX_D    : std_logic_vector(15 downto 0) := X"FE1C";  -- SPI - Sende Register
+    constant IO_SPI_TX_D    : std_logic_vector(15 downto 0) := X"FE1D";  -- SPI - Modtage Register.
         
     begin
     process ( addr, WE, RE )
@@ -61,6 +62,8 @@ architecture Behavioral of ACL is
         rx_rd       <= '0';
         tx_wr       <= '0';
         
+        -- Vores SPI
+        spi_rd      <= '0';
         --Tilføj if statements der tjekker alle de mulige addresser!
         if( addr = STDIN_S ) then       -- STD IN Status
             ACL_MUX     <= "00001";
@@ -109,10 +112,12 @@ architecture Behavioral of ACL is
         elsif(addr = IO_UART_TX_D) then
             pc_tx_wr <= '1';
         --    ACL_MUX     <= "01110"; -- Da vi ikke skal læse på det vi skriver
-        elsif(addr = IO_SPI_TX_D) then
-            ACL_MUX     <= "10000";
-            -- MANGLER FOR SPI  både ind og ud.
         elsif(addr = IO_SPI_RX_D) then
+            if ( WE = '1') then
+                spi_rd <= '1';
+            end if;
+            ACL_MUX     <= "10000";
+        elsif(addr = IO_SPI_TX_D) then
                 ACL_MUX     <= "10001";
         else
             mem_en <= '1';

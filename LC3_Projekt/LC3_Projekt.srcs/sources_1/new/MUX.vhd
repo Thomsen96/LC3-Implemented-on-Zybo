@@ -21,11 +21,12 @@ entity MUX is
             IO_SSEG  : in STD_LOGIC_VECTOR (15 downto 0);
             IO_LED      : in STD_LOGIC_VECTOR (15 downto 0);
             IO_PLED     : in STD_LOGIC_VECTOR (15 downto 0);
-            SPI_in   : in STD_LOGIC_VECTOR (15 downto 0);
-            SPI_out  : in STD_LOGIC_VECTOR (15 downto 0);
+            SPI_S   : in STD_LOGIC_VECTOR (15 downto 0);
+            SPI_D  : in STD_LOGIC_VECTOR (15 downto 0);
             UART_RX_D  : in STD_LOGIC_VECTOR (15 downto 0);
             UART_RX_S    : in STD_LOGIC_VECTOR (15 downto 0);
             UART_TX_S : in STD_LOGIC_VECTOR (15 downto 0)
+
            );
            
 end MUX;
@@ -49,7 +50,8 @@ begin
                     UART_RX_D  when "01101",
                     --UART_TX_D when  "01110",
                     UART_TX_S when  "01111",
-                    SPI_in   when   "10000",
-                    SPI_out  when   "10001",
+                    SPI_S   when   "10000",
+                    SPI_D  when   "10001",
+                    
                     x"FFFF"  when others;
 end Behavioral;
