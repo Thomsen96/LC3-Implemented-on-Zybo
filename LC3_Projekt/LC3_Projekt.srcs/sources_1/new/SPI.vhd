@@ -36,6 +36,7 @@ architecture Behavioral of SPI is
     signal count_max    : std_logic;
 --    signal shift_en     : std_logic;
     Begin
+    spi_clk <= count_signal;
 		Process(tick_rise, tick_fall, sys_reset, clk)
 		Begin
             if (sys_reset = '1') then                                       -- Reset signal
@@ -63,13 +64,14 @@ architecture Behavioral of SPI is
 --                        shift_en <= '1';
                         state <= waiting;
                     WHEN waiting =>                     -- Vi kommer til først at gå til falling.
+                        --count_signal <= '0';
                         if (tick_fall = '1') then
                             state <= falling;
                         elsif (tick_rise = '1') then
                             state <= rising;    
                         end if;
                     WHEN falling =>
-                        spi_clk <= '0';
+                        count_signal <= '0';
                         if( count_max = '1') then
                             state <= init;
                             data_en <= '1';
@@ -78,8 +80,8 @@ architecture Behavioral of SPI is
                             state <= waiting;
                         end if;
                     When rising =>
-                        spi_clk <= '1';
                         count_signal <= '1';
+                        --count_signal <= '1';
                         state <= waiting;
                 end case;
             end if;		
@@ -101,7 +103,7 @@ architecture Behavioral of SPI is
     counter : entity work.vores_counter
         generic map(
             N => 5,
-            m => 16
+            m => 17
             )
         port map(
             count       => count_signal,

@@ -2,10 +2,10 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Thu Jun 14 16:10:09 2018
-# Process ID: 12660
+# Start of session at: Fri Jun 15 09:47:29 2018
+# Process ID: 12088
 # Current directory: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14364 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15204 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
 # Log file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.log
 # Journal file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt\vivado.jou
 #-----------------------------------------------------------
@@ -16,19 +16,11 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.4/data/ip'.
-open_project: Time (s): cpu = 00:00:17 ; elapsed = 00:00:07 . Memory (MB): peak = 786.457 ; gain = 111.266
+open_project: Time (s): cpu = 00:00:16 ; elapsed = 00:00:09 . Memory (MB): peak = 755.770 ; gain = 64.234
 update_compile_order -fileset sources_1
-reset_run impl_1 -prev_step 
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-[Thu Jun 14 16:11:33 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
 reset_run synth_1
-launch_runs synth_1 -jobs 4
-[Thu Jun 14 16:13:00 2018] Launched synth_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 4
-[Thu Jun 14 16:14:33 2018] Launched impl_1...
-Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
 launch_runs impl_1 -to_step write_bitstream -jobs 4
-[Thu Jun 14 16:16:28 2018] Launched impl_1...
+[Fri Jun 15 11:07:53 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/synth_1/runme.log
+[Fri Jun 15 11:07:53 2018] Launched impl_1...
 Run output will be captured here: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.runs/impl_1/runme.log
