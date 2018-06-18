@@ -2,10 +2,10 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Mon Jun 18 09:24:54 2018
-# Process ID: 13512
+# Start of session at: Mon Jun 18 13:06:51 2018
+# Process ID: 14016
 # Current directory: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1280 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7712 C:\Users\Jonas\Documents\GitHub\LC3_Computer\LC3\LC3_Projekt\LC3_Projekt.xpr
 # Log file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/vivado.log
 # Journal file: C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt\vivado.jou
 #-----------------------------------------------------------
@@ -15,27 +15,8 @@ update_compile_order -fileset sources_1
 reset_run synth_1
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
 launch_runs impl_1 -jobs 4
 wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
-close [ open C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/d_ff.vhd w ]
-add_files C:/Users/Jonas/Documents/GitHub/LC3_Computer/LC3/LC3_Projekt/LC3_Projekt.srcs/sources_1/new/d_ff.vhd
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
 reset_run synth_1

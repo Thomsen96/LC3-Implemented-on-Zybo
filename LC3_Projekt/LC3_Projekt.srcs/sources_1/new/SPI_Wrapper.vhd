@@ -33,7 +33,7 @@ architecture behavioral of SPI_Wrapper is
     --signal data_en		: std_logic;
     
     -- Signaler fra data reg til LC3.
-    signal data_mux      : std_logic_vector (9 downto 0);
+    signal data_mux      : std_logic_vector (15 downto 0);
     signal status_signal : std_logic;
     
     
@@ -42,8 +42,8 @@ begin
    -- spi_clk <= tick_fall;   -- Klokken der går til ADC.
     -- Konstante forbindelser.
     Status  <= status_signal & "000000000000000"; 
-    SPI_to_Mux  <= "000000" & data_mux;
-    
+ --   SPI_to_Mux  <= "000000" & data_mux;
+    SPI_to_Mux  <=  data_mux;
 
     slow_clk : entity work.slow_clk
         port map (

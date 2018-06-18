@@ -13,7 +13,7 @@ end d_ff;
 
 architecture Behavioral of d_ff is
 begin
-process (clk, reset)
+process (clk, reset, en)
     begin
         if (reset = '1') then
             data_out <= '0';

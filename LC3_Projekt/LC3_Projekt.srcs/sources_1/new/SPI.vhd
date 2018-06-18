@@ -22,7 +22,7 @@ entity SPI is
         spi_clk     : out std_logic;
         
         -- Til Data register
-        data_out    : out std_logic_vector(9 downto 0)
+        data_out    : out std_logic_vector(15 downto 0)
 --        data_en     : out std_logic
         
     );
@@ -35,8 +35,13 @@ architecture Behavioral of SPI is
     signal count_signal : std_logic;
     signal count_reset  : std_logic;
     signal count_max    : std_logic;
-    signal shift_en     : std_logic;
-    signal data_in      : std_logic_vector(16 downto 0);
+--    signal shift_en     : std_logic;
+    signal shift_in     : std_logic_vector(16 downto 0);
+    signal shift_out    : std_logic_vector(16 downto 0);
+    signal shift_ctrl   : std_logic_vector(1 downto 0);
+   -- signal data_in      : std_logic_vector(15 downto 0);
+    --signal data_out_signal  : std_logic_vector(9 downto 0);
+    
     signal clk_reg_en   : std_logic;
     
     
@@ -89,7 +94,8 @@ architecture Behavioral of SPI is
         count_reset <= '0';
         status <= '0';
         cs <= '0';
-        shift_en <= '0';
+--        shift_en <= '0';
+        shift_ctrl <= "00";
         clk_reg_en <= '1';
         case state is
             when init =>
@@ -97,12 +103,13 @@ architecture Behavioral of SPI is
                 count_reset <= '1';
                 cs <= '1';
             When start =>
-
-                shift_en <= '1';
+                shift_ctrl <= "11";
+--                shift_en <= '1';
             WHEN waiting =>
                 clk_reg_en <= '0';            
             WHEN falling =>
-                shift_en <= '1';
+                shift_ctrl <= "01";
+--                shift_en <= '1';
             When rising =>
                 count_signal <= '1';
         end case;	
@@ -118,27 +125,38 @@ architecture Behavioral of SPI is
             data_out    => spi_clk
         );
     
+    shift_in <= "11" & SEL &  "00000000000" & miso;
+    mosi    <= shift_out(16);
+    data_out <= shift_out(15 downto 0);
     
-    data_in <= "00000000000000" & SEL;
-    
-    SPI_Data_Logic : entity work.univ_shift_reg
-        generic map( n => 17)
-        port map (
-            tick_rise => tick_rise,
-            tick_fall => tick_fall,
-            reset => sys_reset,
-            data_in => data_in,
-            data_out => data_out,
-            miso => miso,
-            mosi    => mosi,
-            rd => rd,
-            shift_en => shift_en
-        ); 
+    Shift_reg_u : entity work.shift_universal
+        generic map (N => 17)
+        port map(
+            clk     => clk,
+            reset   => sys_reset,
+            ctrl    => shift_ctrl,
+            d       => shift_in,
+            q       => shift_out
+        );
+--    data_in <= "00000000000000" & SEL;
+--    SPI_Data_Logic : entity work.univ_shift_reg
+--        generic map( n => 17)
+--        port map (
+--            tick_rise => tick_rise,
+--            tick_fall => tick_fall,
+--            reset => sys_reset,
+--            data_in => data_in,
+--            data_out => data_out,
+--            miso => miso,
+--            mosi    => mosi,
+--            rd => rd,
+--            shift_en => shift_en
+--        ); 
     
     counter : entity work.vores_counter
         generic map(
             N => 5,
-            m => 17
+            m => 18
             )
         port map(
             count       => count_signal,

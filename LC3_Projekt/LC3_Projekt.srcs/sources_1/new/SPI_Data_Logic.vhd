@@ -23,21 +23,23 @@ begin
    -- register
    process(tick_rise, tick_fall, reset)
    begin
-         r_reg <= (others=>'0');
+  --       r_reg <= (others=>'0');
       if (reset='1') then
          r_reg <= (others=>'0');
       elsif (tick_fall = '1') then
          r_reg(n-1 downto 1) <= r_next(n-1 downto 1);
+         r_reg(0) <= r_reg(0);
       elsif (tick_rise = '1') then
          r_reg(0) <= r_next(0);  
+         r_reg(n-1 downto 1) <= r_reg(n-1 downto 1);
       end if;
    end process;
    
    -- next-state logic
    process (shift_en, rd, miso, r_reg, data_in)
    begin
-        r_next(n-1 downto 1) <= r_reg(n-1 downto 1);
-        r_next(0) <= r_reg(0);
+        --r_next(n-1 downto 1) <= r_reg(n-1 downto 1);
+        --r_next(0) <= r_reg(0);
         if (shift_en = '1') then
             r_next(n-1 downto 1) <= r_reg(N-2 downto 0); 
             r_next(0)<= miso;
