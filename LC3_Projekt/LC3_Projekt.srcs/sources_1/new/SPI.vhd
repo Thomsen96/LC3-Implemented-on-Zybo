@@ -124,7 +124,7 @@ architecture Behavioral of SPI is
             data_out    => spi_clk
         );
     
-    shift_in <= "01" & SEL &  "00000000000" & miso;
+    shift_in <= "11" & SEL &  "00000000000" & miso;
     mosi    <= shift_out(16);
 --    mosi    <= '1';
     data_out <= shift_out(15 downto 0);
