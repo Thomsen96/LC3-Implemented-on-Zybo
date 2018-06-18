@@ -29,8 +29,8 @@ architecture behavioral of SPI_Wrapper is
     signal tick_rise    : std_logic;
     signal tick_fall    : std_logic;
     -- signaler fra SPI til data register
-    signal data_reg	    : std_logic_vector (9 downto 0);
-    signal data_en		: std_logic;
+    --signal data_reg	    : std_logic_vector (9 downto 0);
+    --signal data_en		: std_logic;
     
     -- Signaler fra data reg til LC3.
     signal data_mux      : std_logic_vector (9 downto 0);
@@ -72,18 +72,17 @@ begin
             MISO        => miso_pin,
             
             -- Til Data register
-            data_out        => data_reg,
-            data_en     => data_en
+            data_out        => data_mux
+            --data_en     => data_en
         );
            
-    SPI_Data_Register : entity work.SPI_Data_Register
-        port map (
-            clk			=> clk,
-            sys_reset	=> sys_reset,
-            data_en		=> data_en,
-            data_in 	=> data_reg,
-            data_out	=> data_mux
-        );
+--    SPI_Data_Register : entity work.SPI_Data_Register
+--        port map (
+--            clk			=> clk,
+--            sys_reset	=> sys_reset,
+--            data_en		=> data_en,
+--            data_in 	=> data_reg,
+--            data_out	=> data_mux
     
 --    SPI_Data_Logic : entity work.SPI_Data_Logic
 --        port map (

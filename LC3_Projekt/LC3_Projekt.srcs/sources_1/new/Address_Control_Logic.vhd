@@ -48,6 +48,7 @@ architecture Behavioral of ACL is
     begin
     process ( addr, WE, RE )
     begin
+        ACL_MUX     <= "00000";
         cs_IO_SSEG  <= '0';
         cs_IO_LED   <= '0';
         cs_IO_PLED  <= '0';

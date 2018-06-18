@@ -20,7 +20,8 @@ end slow_clk;
 
 architecture Behavioral of slow_clk is
     TYPE State_type IS (wait1, falling, wait2, rising);
-    signal tick_state       : State_type;
+    signal state            : State_type;
+    signal next_state       : State_type;
     signal tick_signal      : std_logic;
 
 
@@ -36,33 +37,47 @@ begin
             max_tick => tick_signal
         ); 
     -- Slow clock(ticks)
-    process (tick_signal, reset) 
+    next_state_logic : process (tick_signal, state) 
     begin
-        if (reset = '1') then
-            tick_state <= wait1;
-        elsif (rising_edge(tick_signal)) then
-            case tick_state IS
-                when Wait1 =>
-                    tick_rise <= '0';
-                    tick_fall <= '0';
-                    if (tick_signal = '1') then 
-                        tick_state <= falling;
-                    end if;
-                when falling =>
-                    tick_fall <= '1';
-                    tick_state <= wait2;
-                when wait2 =>
-                    tick_rise <= '0';
-                    tick_fall <= '0';
-                    if (tick_signal = '1') then 
-                        tick_state <= rising; 
-                    end if;
-                when rising =>
-                    tick_rise <= '1';
-                    tick_state <= wait1;
-            end case;
-        end if;
+        next_state <= state;
+        case state IS
+            when Wait1 =>
+                if (tick_signal = '1') then 
+                    next_state <= falling;
+                end if;
+            when falling =>
+                next_state <= wait2;
+            when wait2 =>
+                if (tick_signal = '1') then 
+                    next_state <= rising; 
+                end if;
+            when rising =>
+                next_state <= wait1;
+        end case;
     end process;    
+
+    output_state_logic : process (state) 
+    begin
+    tick_rise <= '0';
+    tick_fall <= '0';
+        case state IS
+            when Wait1 =>
+            when falling =>
+                tick_fall <= '1';
+            when wait2 =>
+            when rising =>
+                tick_rise <= '1';
+        end case;
+    end process; 
+
+    state_red : process ( reset, clk )
+    begin
+        if ( reset = '1') then
+            state <= wait1;
+        elsif (clk'event and clk = '1') then
+            state <= next_state;
+        end if;
+    end process;
 end Behavioral;
 
 
