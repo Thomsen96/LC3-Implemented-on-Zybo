@@ -14,6 +14,7 @@ entity SPI is
         -- Fra Slow clk
         tick_fall   : in std_logic;
         tick_rise   : in std_logic;
+        tick_reset  : out std_logic;
         
         -- Til og fra ADC        
         cs          : out std_logic;
@@ -67,9 +68,7 @@ architecture Behavioral of SPI is
                     next_state <= start;		
                 end if;
             When start =>
-                if( tick_fall = '1') then
-                    next_state <= waiting;
-                end if;
+                next_state <= waiting;
             WHEN waiting =>                    
                 if (tick_fall = '1') then
                     next_state <= falling;
@@ -90,31 +89,31 @@ architecture Behavioral of SPI is
 		                                                  --output logic.
     output_logic : process ( state )      
     begin
-        count_signal <= '0';
-        count_reset <= '0';
-        status <= '0';
-        cs <= '0';
---        shift_en <= '0';
-        shift_ctrl <= "00";
-        clk_reg_en <= '1';
+        cs              <= '0';
+        status          <= '0';
+        tick_reset      <= '0';
+        count_reset     <= '0';
+        count_signal    <= '0';
+        shift_ctrl      <= "00";
+        clk_reg_en      <= '1';
+--      shift_en        <= '0';
         case state is
             when init =>
                 status <= '1';
+                tick_reset <= '1';
                 count_reset <= '1';
                 cs <= '1';
             When start =>
-                shift_ctrl <= "11";
---                shift_en <= '1';
+                shift_ctrl <= "11";         -- 
+ --             shift_en <= '1';
             WHEN waiting =>
                 clk_reg_en <= '0';            
             WHEN falling =>
-                shift_ctrl <= "01";
---                shift_en <= '1';
+                shift_ctrl <= "01";         -- Signal til at skrifte en gang til venstre.
             When rising =>
                 count_signal <= '1';
         end case;	
     end process;
-    
     
     clock_flop : entity work.d_ff
         port map(
@@ -125,8 +124,9 @@ architecture Behavioral of SPI is
             data_out    => spi_clk
         );
     
-    shift_in <= "11" & SEL &  "00000000000" & miso;
+    shift_in <= "01" & SEL &  "00000000000" & miso;
     mosi    <= shift_out(16);
+--    mosi    <= '1';
     data_out <= shift_out(15 downto 0);
     
     Shift_reg_u : entity work.shift_universal
@@ -155,9 +155,9 @@ architecture Behavioral of SPI is
     
     counter : entity work.vores_counter
         generic map(
-            N => 5,
-            m => 18
-            )
+            N => 5,             -- Antal bits der skal bruges til at tælle til tallet.
+            m => 18             -- Giver m-1 cycler
+        )
         port map(
             count       => count_signal,
             reset       => count_reset,

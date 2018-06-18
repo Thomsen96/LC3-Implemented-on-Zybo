@@ -45,7 +45,6 @@ entity student_code is
         mosi_pin : out std_logic;
         miso_pin : in std_logic
         
-        
         );
         
 end student_code;
@@ -130,6 +129,8 @@ begin
         spi_s   => spi_s,
         spi_d   => spi_d,
         data_to_spi => data_to_spi
+        
+        
         
 	);
 	

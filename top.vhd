@@ -27,7 +27,9 @@ entity LC3Zybo_top is
       spi_clk :     out std_logic;
       ss_pin : out std_logic;
       mosi_pin : out std_logic;
-      miso_pin : in std_logic
+      miso_pin : in std_logic;
+      
+      tester : out std_logic_vector(1 downto 0)
   );
 end LC3Zybo_top;
 
@@ -69,6 +71,7 @@ architecture Behavioral of LC3Zybo_top is
     -- Signaler til Vores UART.
     --signal pc_rx, pc_tx : std_logic;
 begin
+    tester <= "11";
 
 	--Here is an instance of the component where students can write their code
    Inst_student_code: entity work.student_code 

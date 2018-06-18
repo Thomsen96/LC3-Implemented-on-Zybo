@@ -28,6 +28,7 @@ architecture behavioral of SPI_Wrapper is
     -- singlaer til klokken
     signal tick_rise    : std_logic;
     signal tick_fall    : std_logic;
+    signal tick_reset   : std_logic;
     -- signaler fra SPI til data register
     --signal data_reg	    : std_logic_vector (9 downto 0);
     --signal data_en		: std_logic;
@@ -48,7 +49,7 @@ begin
     slow_clk : entity work.slow_clk
         port map (
             clk         => clk,
-            reset       => sys_reset,
+            reset       => tick_reset,
             tick_fall   => tick_fall,
             tick_rise   => tick_rise
         );
@@ -65,6 +66,7 @@ begin
             -- Fra Slow clk
             tick_fall   => tick_fall,
             tick_rise   => tick_rise,
+            tick_reset  => tick_reset,
             -- Til og fra ADC     
             spi_clk     => spi_clk,   
             cs          => ss_pin,

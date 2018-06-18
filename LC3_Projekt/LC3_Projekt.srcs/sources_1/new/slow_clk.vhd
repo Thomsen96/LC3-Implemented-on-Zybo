@@ -37,23 +37,27 @@ begin
             max_tick => tick_signal
         ); 
     -- Slow clock(ticks)
-    next_state_logic : process (tick_signal, state) 
+    next_state_logic : process (tick_signal, state, reset) 
     begin
         next_state <= state;
-        case state IS
-            when Wait1 =>
-                if (tick_signal = '1') then 
-                    next_state <= falling;
-                end if;
-            when falling =>
-                next_state <= wait2;
-            when wait2 =>
-                if (tick_signal = '1') then 
-                    next_state <= rising; 
-                end if;
-            when rising =>
-                next_state <= wait1;
-        end case;
+        if( reset = '1') then
+            next_state <= wait1;
+        else
+            case state IS
+                when Wait1 =>
+                    if (tick_signal = '1') then 
+                        next_state <= rising;
+                    end if;
+                when rising =>
+                    next_state <= wait2;
+                when wait2 =>
+                    if (tick_signal = '1') then 
+                        next_state <= falling; 
+                    end if;
+                when falling =>
+                    next_state <= wait1;
+            end case;
+        end if;
     end process;    
 
     output_state_logic : process (state) 
