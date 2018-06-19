@@ -311,7 +311,6 @@ lc3_ram: entity work.xilinx_one_port_ram_sync
     pc_tx_data <= data_out(7 downto 0);
     
     -- SPI
-    -- SPI
     data_to_spi <= data_out(2 downto 0);
     
 MemMUX: entity work.MUX

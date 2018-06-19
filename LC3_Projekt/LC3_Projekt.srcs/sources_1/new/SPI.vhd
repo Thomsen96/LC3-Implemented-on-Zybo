@@ -42,6 +42,7 @@ architecture Behavioral of SPI is
     signal shift_ctrl   : std_logic_vector(1 downto 0);
    -- signal data_in      : std_logic_vector(15 downto 0);
     --signal data_out_signal  : std_logic_vector(9 downto 0);
+     signal select_singal : std_logic_vector(2 downto 0);
     
     signal clk_reg_en   : std_logic;
     
@@ -124,7 +125,16 @@ architecture Behavioral of SPI is
             data_out    => spi_clk
         );
     
-    shift_in <= "11" & SEL &  "00000000000" & miso;
+    select_singal_reg : entity work.reg_reset
+        port map(
+            clk => clk,
+            reset => sys_reset,
+            en   => rd,
+            d => SEL,
+            q => select_singal
+        );    
+
+    shift_in <= "11" & select_singal &  "00000000000" & miso;
     mosi    <= shift_out(16);
 --    mosi    <= '1';
     data_out <= shift_out(15 downto 0);
@@ -138,20 +148,8 @@ architecture Behavioral of SPI is
             d       => shift_in,
             q       => shift_out
         );
---    data_in <= "00000000000000" & SEL;
---    SPI_Data_Logic : entity work.univ_shift_reg
---        generic map( n => 17)
---        port map (
---            tick_rise => tick_rise,
---            tick_fall => tick_fall,
---            reset => sys_reset,
---            data_in => data_in,
---            data_out => data_out,
---            miso => miso,
---            mosi    => mosi,
---            rd => rd,
---            shift_en => shift_en
---        ); 
+
+
     
     counter : entity work.vores_counter
         generic map(
