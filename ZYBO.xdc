@@ -31,12 +31,12 @@ set_property PACKAGE_PIN D18 [get_ports {blinky}]
 ##Pmod Header JE
 set_property PACKAGE_PIN V12 [get_ports {pc_tx}] 
 set_property PACKAGE_PIN W16 [get_ports {pc_rx}]
-set_property PACKAGE_PIN J15 [get_ports {spi_clk}] 
-set_property PACKAGE_PIN H15 [get_ports {ss_pin}] 
-set_property PACKAGE_PIN V13 [get_ports {mosi_pin}] 
-set_property PACKAGE_PIN U17 [get_ports {miso_pin}] 
-set_property PACKAGE_PIN T17 [get_ports {tester[0]}] 
-set_property PACKAGE_PIN Y17 [get_ports {tester[1]}] 
+set_property PACKAGE_PIN J15 [get_ports {tester[0]}] 
+set_property PACKAGE_PIN H15 [get_ports {tester[1]}] 
+set_property PACKAGE_PIN V13 [get_ports {ss_pin}] 
+set_property PACKAGE_PIN U17 [get_ports {mosi_pin}] 
+set_property PACKAGE_PIN T17 [get_ports {miso_pin}] 
+set_property PACKAGE_PIN Y17 [get_ports {spi_clk}] 
 
 ##VGA Connector
 #set_property PACKAGE_PIN M19 [get_ports {vga_r[0]}] 
