@@ -7,8 +7,8 @@ use ieee.numeric_std.all;
 
 entity slow_clk is
     generic ( 
-    DVSR : integer := 1000;     -- baud rate divisor DVSR = 50M/( 16 * baud rate) 
-    DVSR_BIT : integer:= 10    -- # bits of DVSR 
+    DVSR : integer := 500;     -- ADC kan håndtere ca 1.2 Mhz, og hvis vi dividere med 50 går vi fra 50 MHz til 1 Mhz.
+    DVSR_BIT : integer:= 9    -- # bits of DVSR 
     ); 
     Port (  
             clk         : in std_logic;
